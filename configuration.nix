@@ -12,6 +12,7 @@
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -113,7 +114,6 @@
   fish
   waybar
   hyprlock
-  bluez
   pavucontrol
   networkmanagerapplet
   ];
