@@ -34,8 +34,16 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    settings = {
+      Autologin = {
+        Session = "Hyprland";
+        User = "kerem";
+      };
+    };
+  };
+    # services.xserver.desktopManager.gnome.enable = true;
   programs.hyprland.enable = true;
 
   # Configure keymap in X11
@@ -99,6 +107,9 @@
   kitty
   grim
   slurp
+  fish
+  waybar
+  hyprlock
   ];
   environment.variables.EDITOR = "nvim";
 

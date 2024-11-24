@@ -49,6 +49,7 @@
     go
     rustup
     gcc
+    lua
   ];
 
   programs.git = {
