@@ -110,6 +110,9 @@
   fish
   waybar
   hyprlock
+  bluez
+  pavucontrol
+  networkmanagerapplet
   ];
   environment.variables.EDITOR = "nvim";
 
