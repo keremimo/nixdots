@@ -38,8 +38,6 @@
     iftop
     powertop
 
-    home-manager
-
     sysstat
     lm_sensors #sensors
     ethtool
@@ -57,6 +55,11 @@
     enable = true;
     userName = "Kerem Kilic";
     userEmail = "nyaa@live.com";
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
+  };
+    };
   };
   
   home.stateVersion = "24.11";
