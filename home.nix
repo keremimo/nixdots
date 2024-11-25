@@ -4,6 +4,11 @@
   home.username = "kerem";
   home.homeDirectory = "/home/kerem";
   home.sessionVariables.GTK_THEME = "catppuccin-macchiato-compact-pink-dark";
+
+  imports = [
+    ./modules/fish.nix
+    ./modules/starship.nix
+  ];
   
   gtk = {
     enable = true;
