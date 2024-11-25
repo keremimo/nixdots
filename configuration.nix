@@ -47,6 +47,11 @@
       };
     };
   };
+
+  programs.fish.enable = true;
+
+  users.users.kerem.shell = pkgs.fish;
+
     # services.xserver.desktopManager.gnome.enable = true;
   programs.hyprland.enable = true;
 
@@ -111,7 +116,6 @@
   kitty
   grim
   slurp
-  fish
   waybar
   hyprlock
   pavucontrol

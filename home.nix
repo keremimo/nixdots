@@ -3,6 +3,35 @@
 {
   home.username = "kerem";
   home.homeDirectory = "/home/kerem";
+  home.sessionVariables.GTK_THEME = "catppuccin-macchiato-compact-pink-dark";
+  
+  gtk = {
+    enable = true;
+    theme = {
+      name = "catppuccin-macchiato-compact-pink-dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "pink" ];
+        size = "compact";
+        tweaks = [ "rimless" "black" ];
+        variant = "macchiato";
+      };
+    };
+    iconTheme = {
+      name = "colloid-icon-theme";
+      package = pkgs.colloid-icon-theme;
+    };
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+  };
 
   home.pointerCursor = {
     gtk.enable = true;
@@ -68,6 +97,7 @@
     banana-cursor
     wl-clipboard
     catppuccin-cursors
+    notion-app-enhanced
   ];
 
   programs.git = {

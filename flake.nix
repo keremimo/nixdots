@@ -30,11 +30,11 @@
 		home-manager.useUserPackages = true;
 		home-manager.users.kerem = import ./home.nix;
 	    }
-	  # {
-	  #   environment.systemPackages = [
-	  #     ghostty.packages.x86_64-linux.default
-	  #   ];
-	  # }
+	  {
+	    environment.systemPackages = [
+	      ghostty.packages.x86_64-linux.default
+	    ];
+	  }
 	  ];
 	};
     };
