@@ -1,6 +1,8 @@
-{config, pkgs, ...}:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.username = "kerem";
   home.homeDirectory = "/home/kerem";
   home.sessionVariables.GTK_THEME = "catppuccin-macchiato-compact-pink-dark";
@@ -9,15 +11,15 @@
     ./modules/fish.nix
     ./modules/starship.nix
   ];
-  
+
   gtk = {
     enable = true;
     theme = {
       name = "catppuccin-macchiato-compact-pink-dark";
       package = pkgs.catppuccin-gtk.override {
-        accents = [ "pink" ];
+        accents = ["pink"];
         size = "compact";
-        tweaks = [ "rimless" "black" ];
+        tweaks = ["rimless" "black"];
         variant = "macchiato";
       };
     };
@@ -112,10 +114,10 @@
     extraConfig = {
       init = {
         defaultBranch = "main";
-  };
+      };
     };
   };
-  
+
   home.stateVersion = "24.11";
   programs.home-manager.enable = true;
 }
