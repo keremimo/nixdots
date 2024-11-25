@@ -50,6 +50,13 @@
     rustup
     gcc
     lua
+    nerdfonts
+
+    font-manager
+    jetbrains-mono
+
+    starship
+    brightnessctl
   ];
 
   programs.git = {
