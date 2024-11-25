@@ -63,7 +63,6 @@
     eza
     fzf
     thefuck
-    zoxide
 
     cowsay
     file
@@ -99,7 +98,6 @@
     font-manager
     jetbrains-mono
 
-    starship
     brightnessctl
     banana-cursor
     wl-clipboard

@@ -7,11 +7,6 @@
     enable = true;
   };
 
-  programs.starship = {
-    enable = true;
-    enableTransience = true;
-  };
-
   programs.zoxide.enable = true;
   programs.thefuck.enable = true;
 }
