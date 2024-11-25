@@ -4,6 +4,14 @@
   home.username = "kerem";
   home.homeDirectory = "/home/kerem";
 
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    name = "Banana";
+    package = pkgs.banana-cursor;
+    size = 24;
+  };
+
   home.packages = with pkgs; [
     fastfetch
     yazi
@@ -57,6 +65,9 @@
 
     starship
     brightnessctl
+    banana-cursor
+    wl-clipboard
+    catppuccin-cursors
   ];
 
   programs.git = {
