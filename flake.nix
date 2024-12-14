@@ -1,5 +1,5 @@
 {
-  description = "ThinkPad T480";
+  description = "Victus";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -8,6 +8,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix";
     ghostty = {
       url = "git+ssh://git@github.com/ghostty-org/ghostty";
 
@@ -20,11 +21,12 @@
 
   outputs = inputs @ {
     nixpkgs,
+    catppuccin,
     home-manager,
     ghostty,
     ...
   }: {
-    nixosConfigurations.ThinkChad = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.Victimus = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
@@ -32,7 +34,12 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.kerem = import ./home.nix;
+          home-manager.users.kerem = {
+	  imports = [
+	  ./home.nix
+	  catppuccin.homeManagerModules.catppuccin
+	  ];
+	  };
         }
         {
           environment.systemPackages = [

@@ -39,6 +39,10 @@
       '';
     };
   };
+  catppuccin = {
+	enable = true;
+	flavor = "mocha";
+  };
 
   home.pointerCursor = {
     gtk.enable = true;
@@ -51,6 +55,7 @@
   home.packages = with pkgs; [
     fastfetch
     yazi
+    stow
 
     zip
     xz
@@ -108,7 +113,7 @@
   programs.git = {
     enable = true;
     userName = "Kerem Kilic";
-    userEmail = "nyaa@live.com";
+    userEmail = "code@kerem.tech";
     extraConfig = {
       init = {
         defaultBranch = "main";
