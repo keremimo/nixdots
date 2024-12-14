@@ -33,7 +33,6 @@
         ./devices/victus.nix
         home-manager.nixosModules.home-manager
         {
-          boot.initrd.kernelModules = [ "nvidia" ];
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.kerem = {

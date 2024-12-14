@@ -12,9 +12,9 @@
   package = config.boot.kernelPackages.nvidiaPackages.beta;
     # Modesetting is required.
     modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = true;
+    powerManagement.enable = true;
+    powerManagement.finegrained = true;
+    open = false;
 
     prime = {
       amdgpuBusId = "PCI:06:00:0";

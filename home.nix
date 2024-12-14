@@ -34,6 +34,7 @@
     fastfetch
     yazi
     stow
+    lolcat
 
     zip
     xz
