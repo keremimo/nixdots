@@ -30,6 +30,7 @@
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
     nerd-fonts.agave
+
     fastfetch
     yazi
     stow
@@ -73,34 +74,20 @@
     nodejs_23
     go
     rustup
-    gcc
     lua
-    devenv
+    ruby
+
+    sqlite
 
     font-manager
 
     brightnessctl
     banana-cursor
     wl-clipboard
-    catppuccin-cursors
-    notion-app-enhanced
-  ];
+    devenv
 
-  programs.rbenv = {
-    enable = true;
-    enableFishIntegration = true;
-    plugins = [
-  {
-    name = "ruby-build";
-    src = pkgs.fetchFromGitHub {
-      owner = "rbenv";
-      repo = "ruby-build";
-      rev = "latest";
-      hash = "sha256-Kuq0Z1kh2mvq7rHEgwVG9XwzR5ZUtU/h8SQ7W4/mBU0=";
-    };
-  }
-];
-  };
+    vscodium
+  ];
 
   programs.direnv = {
     enable = true;

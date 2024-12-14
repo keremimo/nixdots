@@ -11,6 +11,10 @@
     ./hardware-configuration.nix
   ];
 
+  nix.extraOptions = ''
+    trusted-users = root kerem
+  '';
+
   environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
   
   hardware.bluetooth.enable = true;
@@ -108,6 +112,7 @@
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
+    gnumake
     neovim
     git
     wget
@@ -122,10 +127,15 @@
     waybar
     hyprlock
     pavucontrol
-    sqlite
     networkmanagerapplet
     glibc
-    ruby
+    zlib
+    libclang
+    openssl
+    pkg-config
+    gcc
+    sqlite
+    xfce.thunar
   ];
   environment.variables.EDITOR = "nvim";
 

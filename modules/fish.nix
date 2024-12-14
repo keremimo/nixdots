@@ -8,7 +8,6 @@
     interactiveShellInit = ''
     set fish_greeting
     '';
-
     functions = {
 	__fish_greeting = "";
     };
