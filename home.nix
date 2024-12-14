@@ -12,33 +12,6 @@
     ./modules/starship.nix
   ];
 
-  gtk = {
-    enable = true;
-    theme = {
-      name = "catppuccin-macchiato-compact-pink-dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = ["pink"];
-        size = "compact";
-        tweaks = ["rimless" "black"];
-        variant = "macchiato";
-      };
-    };
-    iconTheme = {
-      name = "colloid-icon-theme";
-      package = pkgs.colloid-icon-theme;
-    };
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-  };
   catppuccin = {
 	enable = true;
 	flavor = "mocha";
@@ -53,6 +26,10 @@
   };
 
   home.packages = with pkgs; [
+    nerd-fonts.caskaydia-cove
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.agave
     fastfetch
     yazi
     stow
@@ -98,10 +75,9 @@
     rustup
     gcc
     lua
-    nerdfonts
+    devenv
 
     font-manager
-    jetbrains-mono
 
     brightnessctl
     banana-cursor
@@ -109,6 +85,28 @@
     catppuccin-cursors
     notion-app-enhanced
   ];
+
+  programs.rbenv = {
+    enable = true;
+    enableFishIntegration = true;
+    plugins = [
+  {
+    name = "ruby-build";
+    src = pkgs.fetchFromGitHub {
+      owner = "rbenv";
+      repo = "ruby-build";
+      rev = "latest";
+      hash = "sha256-Kuq0Z1kh2mvq7rHEgwVG9XwzR5ZUtU/h8SQ7W4/mBU0=";
+    };
+  }
+];
+  };
+
+  programs.direnv = {
+    enable = true;
+    silent = true;
+    nix-direnv.enable = true;
+  };
 
   programs.git = {
     enable = true;

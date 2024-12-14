@@ -11,6 +11,8 @@
     ./hardware-configuration.nix
   ];
 
+  environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
+  
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
@@ -120,7 +122,10 @@
     waybar
     hyprlock
     pavucontrol
+    sqlite
     networkmanagerapplet
+    glibc
+    ruby
   ];
   environment.variables.EDITOR = "nvim";
 
