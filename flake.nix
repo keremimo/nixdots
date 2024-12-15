@@ -52,8 +52,7 @@
     nixosConfigurations.ThinkChad = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./configuration.nix
-        ./devices/t480.nix
+        ./devices/t480
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

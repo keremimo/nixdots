@@ -7,7 +7,7 @@
   ...
 }: {
   imports = [
-
+	./t480-hardware.nix
   ];
 
   nix.extraOptions = ''
@@ -19,6 +19,8 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
+  
+  networking.hostName = "ThinkChad"; # Define your hostname.
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -134,6 +136,7 @@
     gcc
     sqlite
     xfce.thunar
+    xfce.thunar-volman
   ];
   environment.variables.EDITOR = "nvim";
 
