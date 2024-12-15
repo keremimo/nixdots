@@ -49,5 +49,28 @@
         }
       ];
     };
+    nixosConfigurations.ThinkChad = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./configuration.nix
+        ./devices/t480.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.kerem = {
+	  imports = [
+	  ./home.nix
+	  catppuccin.homeManagerModules.catppuccin
+	  ];
+	  };
+        }
+        {
+          environment.systemPackages = [
+            ghostty.packages.x86_64-linux.default
+          ];
+        }
+      ];
+    };
   };
 }
