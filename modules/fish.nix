@@ -1,26 +1,25 @@
-{
-  config,
-  pkgs,
-  ...
+{ config
+, pkgs
+, ...
 }: {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
-    set fish_greeting
+      set fish_greeting
     '';
     functions = {
-	__fish_greeting = "";
+      __fish_greeting = "";
     };
 
     shellAliases = {
-	cd = "z";
-	ls = "eza";
+      cd = "z";
+      ls = "eza";
     };
   };
 
   programs.zoxide = {
-	enable = true;
-	enableFishIntegration = true;
+    enable = true;
+    enableFishIntegration = true;
   };
   programs.thefuck.enable = true;
 }

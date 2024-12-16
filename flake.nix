@@ -24,62 +24,62 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    catppuccin,
-    home-manager,
-    ghostty,
-    nixvim,
-    ...
-  }: {
-    nixosConfigurations.Victimus = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-        ./devices/victus/default.nix
-        ./devices/victus/victus-hardware.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.kerem = {
-	  imports = [
-	  ./home.nix
-	  catppuccin.homeManagerModules.catppuccin
-          nixvim.homeManagerModules.nixvim
-	  ];
-	  };
-        }
-        {
-          environment.systemPackages = [
-            ghostty.packages.x86_64-linux.default
-          ];
-        }
-      ];
+  outputs =
+    { nixpkgs
+    , catppuccin
+    , home-manager
+    , ghostty
+    , nixvim
+    , ...
+    }: {
+      nixosConfigurations.Victimus = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./configuration.nix
+          ./devices/victus/default.nix
+          ./devices/victus/victus-hardware.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.kerem = {
+              imports = [
+                ./home.nix
+                catppuccin.homeManagerModules.catppuccin
+                nixvim.homeManagerModules.nixvim
+              ];
+            };
+          }
+          {
+            environment.systemPackages = [
+              ghostty.packages.x86_64-linux.default
+            ];
+          }
+        ];
+      };
+      nixosConfigurations.ThinkChad = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./devices/t480
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.kerem = {
+              imports = [
+                ./home.nix
+                ./devices/t480/git-signkey.nix
+                catppuccin.homeManagerModules.catppuccin
+                nixvim.homeManagerModules.nixvim
+              ];
+            };
+          }
+          {
+            environment.systemPackages = [
+              ghostty.packages.x86_64-linux.default
+            ];
+          }
+        ];
+      };
     };
-    nixosConfigurations.ThinkChad = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./devices/t480
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.kerem = {
-	  imports = [
-	  ./home.nix
-          ./devices/t480/git-signkey.nix
-	  catppuccin.homeManagerModules.catppuccin
-          nixvim.homeManagerModules.nixvim
-	  ];
-	  };
-        }
-        {
-          environment.systemPackages = [
-            ghostty.packages.x86_64-linux.default
-          ];
-        }
-      ];
-    };
-  };
 }

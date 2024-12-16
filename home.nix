@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
+{ config
+, pkgs
+, inputs
+, ...
 }: {
 
   imports = [
@@ -15,8 +14,8 @@
   home.sessionVariables.GTK_THEME = "catppuccin-macchiato-compact-pink-dark";
 
   catppuccin = {
-	enable = true;
-	flavor = "mocha";
+    enable = true;
+    flavor = "mocha";
   };
 
   home.pointerCursor = {
@@ -92,11 +91,10 @@
     foliate
   ];
 
-    programs.nixvim = {
-      enable = true;
+  programs.nixvim = {
+    enable = true;
 
-      luaLoader.enable = true;
-    };
+  };
 
   programs.direnv = {
     enable = true;

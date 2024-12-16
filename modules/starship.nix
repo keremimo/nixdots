@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  ...
-}: 
+{ config
+, pkgs
+, ...
+}:
 
 {
   programs.starship = {
@@ -10,19 +9,19 @@
     enableFishIntegration = true;
     enableTransience = true;
     settings = {
-	format = "[ 󰣇 ](bg:#6c7086 fg:#f2cdcd)[](bg:#313244 fg:#6c7086)$directory[](fg:#313244 bg:#394260)$git_branch$git_status[](fg:#394260 bg:#212736)$nodejs$rust$golang$php[](fg:#212736 bg:#1d2230)$time[ ](fg:#1d2230)
+      format = "[ 󰣇 ](bg:#6c7086 fg:#f2cdcd)[](bg:#313244 fg:#6c7086)$directory[](fg:#313244 bg:#394260)$git_branch$git_status[](fg:#394260 bg:#212736)$nodejs$rust$golang$php[](fg:#212736 bg:#1d2230)$time[ ](fg:#1d2230)
 $character
 ";
-	character = {
-		success_symbol = "[󰋇](#f2cdcd)";
-		error_symbol = "[](#f38ba8)";
-	};
-	directory = {
-style = "fg:#cdd6f4 bg:#313244";
-format = "[ $path ]($style)";
-truncation_length = 3;
-truncation_symbol = "…/";
-	};
+      character = {
+        success_symbol = "[󰋇](#f2cdcd)";
+        error_symbol = "[](#f38ba8)";
+      };
+      directory = {
+        style = "fg:#cdd6f4 bg:#313244";
+        format = "[ $path ]($style)";
+        truncation_length = 3;
+        truncation_symbol = "…/";
+      };
       rust = {
         symbol = "";
         style = "bg:#212736";
@@ -54,6 +53,6 @@ truncation_symbol = "…/";
         format = "[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)";
       };
     };
-};
+  };
 }
 
