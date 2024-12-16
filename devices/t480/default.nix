@@ -9,11 +9,21 @@
   imports = [
 	./t480-hardware.nix
   ];
+  programs.git.signing = {
+    key = "70D73D1976D6B1BA";
+    signByDefault = true;
+  };
+
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry-curses;
+    enableSSHSupport = true;
+  };
 
   nix.extraOptions = ''
     trusted-users = root kerem
   '';
-
   environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
   
   hardware.bluetooth.enable = true;
@@ -137,6 +147,7 @@
     sqlite
     xfce.thunar
     xfce.thunar-volman
+    pinentry-curses
   ];
   environment.variables.EDITOR = "nvim";
 
