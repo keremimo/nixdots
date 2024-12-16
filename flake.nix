@@ -60,6 +60,7 @@
           home-manager.users.kerem = {
 	  imports = [
 	  ./home.nix
+          ./devices/t480/git-signkey.nix
 	  catppuccin.homeManagerModules.catppuccin
 	  ];
 	  };
