@@ -1,16 +1,18 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
-  home.username = "kerem";
-  home.homeDirectory = "/home/kerem";
-  home.sessionVariables.GTK_THEME = "catppuccin-macchiato-compact-pink-dark";
 
   imports = [
     ./modules/fish.nix
     ./modules/starship.nix
   ];
+
+  home.username = "kerem";
+  home.homeDirectory = "/home/kerem";
+  home.sessionVariables.GTK_THEME = "catppuccin-macchiato-compact-pink-dark";
 
   catppuccin = {
 	enable = true;
@@ -89,6 +91,12 @@
     vscodium
     foliate
   ];
+
+    programs.nixvim = {
+      enable = true;
+
+      luaLoader.enable = true;
+    };
 
   programs.direnv = {
     enable = true;

@@ -17,13 +17,19 @@
       inputs.nixpkgs-stable.follows = "nixpkgs";
       inputs.nixpkgs-unstable.follows = "nixpkgs";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-24.11";
+      # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ {
+  outputs = {
     nixpkgs,
     catppuccin,
     home-manager,
     ghostty,
+    nixvim,
     ...
   }: {
     nixosConfigurations.Victimus = nixpkgs.lib.nixosSystem {
@@ -40,6 +46,7 @@
 	  imports = [
 	  ./home.nix
 	  catppuccin.homeManagerModules.catppuccin
+          nixvim.homeManagerModules.nixvim
 	  ];
 	  };
         }
@@ -63,6 +70,7 @@
 	  ./home.nix
           ./devices/t480/git-signkey.nix
 	  catppuccin.homeManagerModules.catppuccin
+          nixvim.homeManagerModules.nixvim
 	  ];
 	  };
         }
