@@ -30,7 +30,8 @@
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
-        ./devices/victus.nix
+        ./devices/victus/default.nix
+        ./devices/victus/victus-hardware.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
