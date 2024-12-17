@@ -1,5 +1,6 @@
 {
 	opts = {
+    clipboard = "unnamedplus";
 		number = true;
 		mouse = "a";
 		signcolumn = "no";

@@ -16,17 +16,56 @@
 
     plugins = {
       lz-n.enable = true;
-
+      blink-cmp = {
+        enable = true;
+        settings = {
+  accept = {
+    auto_brackets = {
+      enabled = false;
+    };
+  };
+  windows.documentation = {
+    auto_show = true;
+  };
+  highlight = {
+    use_nvim_cmp_as_default = true;
+  };
+  keymap = {
+    preset = "super-tab";
+  };
+  trigger = {
+    signature_help = {
+      enabled = true;
+    };
+  };
+};
+      };
       neo-tree.enable = true;
 
       cmp = {
   autoEnableSources = true;
+        settings.snippet = {
+        expand = ''
+          function(args)
+          require("luasnip").lsp_expand(args.body)
+          end
+        '';
+      };
   settings.sources = [
     { name = "nvim_lsp"; }
     { name = "path"; }
-    { name = "buffer"; }
+    { name = "buffer";}
+    { 
+      name = "luasnip";
+      option = {show_autosnippets = true;};
+      }
   ];
 };
+
+      luasnip = {
+        enable = true;
+        settings.enable_autosnippets = true;
+      };
 
       nvim-autopairs.enable = true;
 
@@ -49,6 +88,7 @@
       };
       lsp = {
       enable = true;
+      inlayHints = true;
       keymaps = {
       diagnostic = {
         "<leader>j" = "goto_next";
@@ -56,14 +96,16 @@
       };
       };
       servers = {
-	ruby_lsp = {
-		enable = true;
-		filetypes = [
-		"rb"
-		"erb"
-		];
-	};
-};
+        nil_ls.enable = true;
+        ruby_lsp = {
+          enable = true;
+          cmd = [
+          "bundle"
+          "exec"
+          "ruby-lsp"
+          ];
+        };
+  };
 };
 
     };

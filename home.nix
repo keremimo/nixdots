@@ -77,7 +77,6 @@
     go
     rustup
     lua
-    ruby
 
     sqlite
 
