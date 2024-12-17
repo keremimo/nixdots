@@ -2,10 +2,10 @@
   description = "Victus";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
@@ -14,8 +14,8 @@
 
       # NOTE: The below 2 lines are only required on nixos-unstable,
       # if you're on stable, they may break your build
-      inputs.nixpkgs-stable.follows = "nixpkgs";
-      inputs.nixpkgs-unstable.follows = "nixpkgs";
+      # inputs.nixpkgs-stable.follows = "nixpkgs";
+      # inputs.nixpkgs-unstable.follows = "nixpkgs";
     };
     nixvim = {
       url = "github:nix-community/nixvim/nixos-24.11";

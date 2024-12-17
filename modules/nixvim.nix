@@ -10,7 +10,12 @@
     globals = {
 		mapleader = " ";
 		have_nerd_font = true;
-	};    
+	};
+  performance.byteCompileLua = {
+    enable = true;
+    nvimRuntime = true;
+    plugins = true;
+  };
 
       colorschemes.catppuccin.enable = true;
 
