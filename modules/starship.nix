@@ -9,7 +9,11 @@
     enableFishIntegration = true;
     enableTransience = true;
     settings = {
+<<<<<<< Updated upstream
       format = "[ 󰣇 ](bg:#6c7086 fg:#f2cdcd)[](bg:#313244 fg:#6c7086)$directory[](fg:#313244 bg:#394260)$git_branch$git_status[](fg:#394260 bg:#212736)$nodejs$rust$golang$php[](fg:#212736 bg:#1d2230)$time[ ](fg:#1d2230)
+=======
+	format = "[  ](bg:#6c7086 fg:#f2cdcd)[](bg:#313244 fg:#6c7086)$directory[](fg:#313244 bg:#394260)$git_branch$git_status[](fg:#394260 bg:#212736)$nodejs$rust$golang$php[](fg:#212736 bg:#1d2230)$time[ ](fg:#1d2230)
+>>>>>>> Stashed changes
 $character
 ";
       character = {
