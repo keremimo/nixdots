@@ -136,6 +136,7 @@
     pavucontrol
     networkmanagerapplet
     glibc
+    glib
     zlib
     libclang
     openssl
