@@ -7,6 +7,7 @@
   imports = [
     ./modules/fish.nix
     ./modules/starship.nix
+    ./modules/nixvim.nix
   ];
 
   home.username = "kerem";
@@ -90,11 +91,6 @@
     vscodium
     foliate
   ];
-
-  programs.nixvim = {
-    enable = true;
-
-  };
 
   programs.direnv = {
     enable = true;
