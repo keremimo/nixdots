@@ -9,15 +9,17 @@
     ./t480-hardware.nix
   ];
 
-  services.displayManager.sddm = {
-    enable = true;
-    settings = {
-      Autologin = {
-        Session = "Hyprland";
-        User = "kerem";
-      };
-    };
-  };
+  services.xserver.displayManager.gdm.enable = true;
+  programs.niri.enable = true;
+  programs.xwayland.enable = true;
+
+  # Enable automatic login for the user.
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "kerem";
+
+  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
 
   services.pcscd.enable = true;
   programs.gnupg.agent = {

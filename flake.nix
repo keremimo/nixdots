@@ -68,6 +68,9 @@
                 ./devices/t480/git-signkey.nix
                 catppuccin.homeManagerModules.catppuccin
                 nixvim.homeManagerModules.nixvim
+                niri.homeModules.niri
+                stylix.homeManagerModules.stylix
+                niri.homeModules.stylix
               ];
             };
           }
