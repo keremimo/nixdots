@@ -11,7 +11,10 @@
     catppuccin.url = "github:catppuccin/nix";
     ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
     nixvim.url = "github:nix-community/nixvim/nixos-24.11";
-    niri.url = "github:sodiboo/niri-flake";
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix.url = "github:danth/stylix";
   };
 
@@ -25,6 +28,7 @@
     , stylix
     , ...
     }: {
+      nixpkgs.overlays = [ niri.overlays.niri ];
       nixosConfigurations.Victimus = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -66,6 +70,7 @@
               imports = [
                 ./home.nix
                 ./devices/t480/git-signkey.nix
+                ./devices/t480/niri-t480.nix
                 catppuccin.homeManagerModules.catppuccin
                 nixvim.homeManagerModules.nixvim
                 niri.homeModules.niri
