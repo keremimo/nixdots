@@ -8,9 +8,9 @@
     ./modules/fish.nix
     ./modules/starship.nix
     ./modules/nixvim.nix
+    ./modules/niri.nix
+    ./modules/waybar.nix
   ];
-
-  programs.niri.enable = true;
 
   home.username = "kerem";
   home.homeDirectory = "/home/kerem";
@@ -20,27 +20,12 @@
     flavor = "mocha";
   };
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
-    name = "Banana";
-    package = pkgs.banana-cursor;
-    size = 24;
-  };
-
-  gtk = {
-    enable = true;
-    iconTheme = {
-      name = "SolArc-Dark";
-      package = pkgs.solarc-gtk-theme;
-    };
-  };
-
   home.packages = with pkgs; [
     fastfetch
     yazi
     stow
     lolcat
+    mako
 
     zip
     xz

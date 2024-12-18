@@ -12,6 +12,7 @@
     ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
     nixvim.url = "github:nix-community/nixvim/nixos-24.11";
     niri.url = "github:sodiboo/niri-flake";
+    stylix.url = "github:danth/stylix";
   };
 
   outputs =
@@ -21,6 +22,7 @@
     , ghostty
     , nixvim
     , niri
+    , stylix
     , ...
     }: {
       nixosConfigurations.Victimus = nixpkgs.lib.nixosSystem {
@@ -39,6 +41,8 @@
                 catppuccin.homeManagerModules.catppuccin
                 nixvim.homeManagerModules.nixvim
                 niri.homeModules.niri
+                stylix.homeManagerModules.stylix
+                niri.homeModules.stylix
               ];
             };
           }
@@ -89,6 +93,8 @@
                 catppuccin.homeManagerModules.catppuccin
                 nixvim.homeManagerModules.nixvim
                 niri.homeModules.niri
+                niri.homeModules.stylix
+                stylix.homeManagerModules.stylix
               ];
             };
           }
