@@ -10,6 +10,7 @@
   ];
 
   services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
   programs.niri.enable = true;
   programs.xwayland.enable = true;
 
