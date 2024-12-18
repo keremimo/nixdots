@@ -10,6 +10,8 @@
     ./modules/nixvim.nix
   ];
 
+  programs.niri.enable = true;
+
   home.username = "kerem";
   home.homeDirectory = "/home/kerem";
   home.sessionVariables.GTK_THEME = "catppuccin-macchiato-compact-pink-dark";
@@ -25,6 +27,14 @@
     name = "Banana";
     package = pkgs.banana-cursor;
     size = 24;
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.flat-remix-gtk;
+      name = "Flat-Remix-GTK-Grey-Darkest";
+    };
   };
 
   home.packages = with pkgs; [

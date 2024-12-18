@@ -10,18 +10,29 @@
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  services.displayManager.sddm = {
+    enable = true;
+    settings = {
+      Autologin = {
+        Session = "Hyprland";
+        User = "kerem";
+      };
+    };
+  };
+
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.beta;
     # Modesetting is required.
     modesetting.enable = true;
     powerManagement.enable = true;
-    powerManagement.finegrained = false;
+    powerManagement.finegrained = true;
     open = false;
+    forceFullCompositionPipeline = true;
 
     prime = {
       amdgpuBusId = "PCI:06:00:0";
       nvidiaBusId = "PCI:01:00:0";
-      sync.enable = true;
+      offload.enable = true;
       allowExternalGpu = false;
     };
 

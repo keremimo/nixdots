@@ -21,6 +21,13 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -39,15 +46,6 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  services.displayManager.sddm = {
-    enable = true;
-    settings = {
-      Autologin = {
-        Session = "Hyprland";
-        User = "kerem";
-      };
-    };
-  };
 
   programs.fish.enable = true;
 

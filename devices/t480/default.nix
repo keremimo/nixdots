@@ -9,6 +9,16 @@
     ./t480-hardware.nix
   ];
 
+  services.displayManager.sddm = {
+    enable = true;
+    settings = {
+      Autologin = {
+        Session = "Hyprland";
+        User = "kerem";
+      };
+    };
+  };
+
   services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
