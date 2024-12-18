@@ -4,7 +4,7 @@
   imports =
     [
       # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./l14-hardware.nix
     ];
 
   networking.hostName = "L14"; # Define your hostname.
