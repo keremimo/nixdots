@@ -14,7 +14,6 @@
 
   home.username = "kerem";
   home.homeDirectory = "/home/kerem";
-  home.sessionVariables.GTK_THEME = "catppuccin-macchiato-compact-pink-dark";
 
   catppuccin = {
     enable = true;
@@ -31,9 +30,9 @@
 
   gtk = {
     enable = true;
-    theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Grey-Darkest";
+    iconTheme = {
+      name = "SolArc-Dark";
+      package = pkgs.solarc-gtk-theme;
     };
   };
 
