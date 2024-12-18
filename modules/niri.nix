@@ -6,7 +6,10 @@
   stylix = {
     enable = true;
     autoEnable = true;
-    image = ./wallpapers/wallhaven-yxdrex.png;
+    image = pkgs.fetchurl {
+      url = "https://w.wallhaven.cc/full/yx/wallhaven-yxdrex.png";
+      sha256 = "sha256-lLpIOKdyH4YaIO1Yw0wxWGhTEPYdSMLzMedoDQ5ko/o=";
+    };
     targets.niri.enable = true;
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
@@ -24,6 +27,12 @@
           }
           {
             command = sh "mako";
+          }
+          {
+            command = sh "swww-daemon";
+          }
+          {
+            command = sh "swww img ~/dotfiles/Wallpapers/wallhaven-6dygpl.jpg";
           }
         ];
         prefer-no-csd = true;

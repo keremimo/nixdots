@@ -26,6 +26,7 @@
     stow
     lolcat
     mako
+    swww
 
     zip
     xz
@@ -78,6 +79,9 @@
 
     vscodium
     foliate
+
+    aerc
+    senpai
   ];
 
   programs.direnv = {
