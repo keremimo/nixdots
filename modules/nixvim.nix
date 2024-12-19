@@ -240,6 +240,14 @@
       };
       lsp = {
         enable = true;
+        capabilities = ''
+          local capabilities = vim.lsp.protocol.make_client_capabilities()
+          capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+          require'lspconfig'.cssls.setup {
+            capabilities = capabilities,
+          }
+        '';
         inlayHints = true;
         keymaps = {
           diagnostic = {
@@ -248,6 +256,10 @@
           };
         };
         servers = {
+          cssls = {
+            enable = true;
+            package = pkgs.vscode-langservers-extracted;
+          };
           vtsls = {
             enable = true;
             package = pkgs.vtsls;
