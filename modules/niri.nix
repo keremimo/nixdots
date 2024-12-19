@@ -41,6 +41,7 @@
           keyboard.repeat-delay = 220;
           keyboard.repeat-rate = 40;
           mouse = {
+            accel-profile = "flat";
             scroll-button = 274;
             scroll-factor = 0.5;
             scroll-method = "on-button-down";

@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}: {
+{ pkgs, ... }: {
   programs.nixvim = {
     enable = true;
 
@@ -27,31 +25,21 @@
 
       telescope = {
         enable = true;
-        keymaps = {
-          "<leader>fg" = "live_grep";
-        };
+        keymaps = { "<leader>fg" = "live_grep"; };
       };
 
-      which-key = {
-        enable = true;
-      };
+      which-key = { enable = true; };
 
       snacks = {
         enable = true;
         settings = {
-          bigfile = {
-            enabled = true;
-          };
+          bigfile = { enabled = true; };
           notifier = {
             enabled = true;
             timeout = 3000;
           };
-          quickfile = {
-            enabled = false;
-          };
-          statuscolumn = {
-            enabled = false;
-          };
+          quickfile = { enabled = false; };
+          statuscolumn = { enabled = false; };
           words = {
             debounce = 100;
             enabled = true;
@@ -74,21 +62,19 @@
               textobject = "<leader>/";
             };
           };
-          diff = {
-            view = {
-              style = "sign";
-            };
-          };
+          diff = { view = { style = "sign"; }; };
           starter = {
             content_hooks = {
               "__unkeyed-1.adding_bullet" = {
                 __raw = "require('mini.starter').gen_hook.adding_bullet()";
               };
               "__unkeyed-2.indexing" = {
-                __raw = "require('mini.starter').gen_hook.indexing('all', { 'Builtin actions' })";
+                __raw =
+                  "require('mini.starter').gen_hook.indexing('all', { 'Builtin actions' })";
               };
               "__unkeyed-3.padding" = {
-                __raw = "require('mini.starter').gen_hook.aligning('center', 'center')";
+                __raw =
+                  "require('mini.starter').gen_hook.aligning('center', 'center')";
               };
             };
             evaluate_single = true;
@@ -105,10 +91,12 @@
                 __raw = "require('mini.starter').sections.builtin_actions()";
               };
               "__unkeyed-2.recent_files_current_directory" = {
-                __raw = "require('mini.starter').sections.recent_files(10, false)";
+                __raw =
+                  "require('mini.starter').sections.recent_files(10, false)";
               };
               "__unkeyed-3.recent_files" = {
-                __raw = "require('mini.starter').sections.recent_files(10, true)";
+                __raw =
+                  "require('mini.starter').sections.recent_files(10, true)";
               };
               "__unkeyed-4.sessions" = {
                 __raw = "require('mini.starter').sections.sessions(5, true)";
@@ -128,30 +116,15 @@
           };
         };
       };
-      lsp-format.enable = true;
       leap.enable = true;
       blink-cmp = {
         enable = true;
         settings = {
-          accept = {
-            auto_brackets = {
-              enabled = false;
-            };
-          };
-          windows.documentation = {
-            auto_show = true;
-          };
-          highlight = {
-            use_nvim_cmp_as_default = true;
-          };
-          keymap = {
-            preset = "super-tab";
-          };
-          trigger = {
-            signature_help = {
-              enabled = true;
-            };
-          };
+          accept = { auto_brackets = { enabled = false; }; };
+          windows.documentation = { auto_show = true; };
+          highlight = { use_nvim_cmp_as_default = true; };
+          keymap = { preset = "super-tab"; };
+          trigger = { signature_help = { enabled = true; }; };
         };
       };
       neo-tree.enable = true;
@@ -174,6 +147,16 @@
             option = { show_autosnippets = true; };
           }
         ];
+      };
+
+      lsp-format = { enable = true; };
+
+      none-ls = {
+        enable = true;
+        sources.formatting = {
+          rubocop.enable = true;
+          nixfmt.enable = true;
+        };
       };
 
       luasnip = {
@@ -212,17 +195,12 @@
         servers = {
           nixd = {
             enable = true;
-            settings.formatting.command = [
-              "nixpkgs-fmt"
-            ];
+            settings.formatting.command = [ "nixpkgs-fmt" ];
+            cmd = [ "nixd" ];
           };
           ruby_lsp = {
             enable = true;
-            cmd = [
-              "bundle"
-              "exec"
-              "ruby-lsp"
-            ];
+            cmd = [ "bundle" "exec" "ruby-lsp" ];
           };
         };
       };
