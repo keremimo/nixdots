@@ -183,6 +183,9 @@
           notify_on_error = false;
           notify_no_formatters = false;
           formatters = {
+            prettierd = {
+              command = lib.getExe pkgs.prettierd;
+            };
             rubocop = {
               command = lib.getExe pkgs.rubocop;
             };
@@ -225,7 +228,6 @@
         enable = true;
 
         settings = {
-          # NOTE: You can set whether `nvim-treesitter` should automatically install the grammars.
           auto_install = true;
           ensure_installed = [
             "git_config"
@@ -246,6 +248,10 @@
           };
         };
         servers = {
+          vtsls = {
+            enable = true;
+            package = pkgs.vtsls;
+          };
           nixd = {
             enable = true;
             settings.formatting.command = [ "nixpkgs-fmt" ];
@@ -262,5 +268,13 @@
       };
 
     };
+    autoCmd = [
+      {
+        event = "TextYankPost";
+        group = "highlight_yank";
+        callback.__raw = "function() vim.highlight.on_yank { higroup = 'IncSearch', timeout = 200 } end";
+      }
+    ];
+    autoGroups.highlight_yank.clear = true;
   } // import ./nixvim/opts.nix;
 }
