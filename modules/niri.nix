@@ -88,33 +88,37 @@
             };
           };
         };
-        binds = with config.lib.niri.actions; {
-          "XF86AudioRaiseVolume".action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+" ];
-          "XF86AudioLowerVolume".action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-" ];
+        binds = with config.lib.niri.actions;
+          let
+            shoot = spawn "sh" "-c";
+          in
+          {
+            "XF86AudioRaiseVolume".action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+" ];
+            "XF86AudioLowerVolume".action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-" ];
 
-          "Super+Space".action.spawn = "fuzzel";
-          "Super+T".action.spawn = "ghostty";
-          "Super+B".action.spawn = "firefox";
-          "Super+1".action = focus-workspace 1;
-          "Super+2".action = focus-workspace 2;
-          "Super+3".action = focus-workspace 3;
-          "Super+4".action = focus-workspace 4;
+            "Super+Space".action.spawn = "fuzzel";
+            "Super+T".action.spawn = "ghostty";
+            "Super+B".action.spawn = "firefox";
+            "Super+1".action = focus-workspace 1;
+            "Super+2".action = focus-workspace 2;
+            "Super+3".action = focus-workspace 3;
+            "Super+4".action = focus-workspace 4;
 
-          "Super+q".action = close-window;
-          "Super+Shift+q".action.quit.skip-confirmation = true;
-          "Super+Equal".action = set-column-width "+10%";
-          "Super+Minus".action = set-column-width "-10%";
+            "Super+q".action = close-window;
+            "Super+Shift+q".action.quit.skip-confirmation = true;
+            "Super+Equal".action = set-column-width "+10%";
+            "Super+Minus".action = set-column-width "-10%";
 
-          "Super+f".action = fullscreen-window;
-          "Super+Left".action = focus-column-or-monitor-left;
-          "Super+Right".action = focus-column-or-monitor-right;
+            "Super+f".action = fullscreen-window;
+            "Super+Left".action = focus-column-or-monitor-left;
+            "Super+Right".action = focus-column-or-monitor-right;
 
-          "Super+H".action = focus-column-left;
-          "Super+L".action = focus-column-right;
-          "Super+J".action = focus-window-down-or-column-left;
-          "Super+K".action = focus-window-up-or-column-right;
-          "Print".action = screenshot;
-        };
+            "Super+H".action = focus-column-left;
+            "Super+L".action = focus-column-right;
+            "Super+J".action = focus-window-down-or-column-left;
+            "Super+K".action = focus-window-up-or-column-right;
+            "Print".action = shoot ''grim -g "$(slurp)" - | wl-copy'';
+          };
       };
   };
 }
