@@ -40,6 +40,11 @@
           focus-follows-mouse.enable = true;
           keyboard.repeat-delay = 220;
           keyboard.repeat-rate = 40;
+          mouse = {
+            scroll-button = 274;
+            scroll-factor = 0.5;
+            scroll-method = "on-button-down";
+          };
         };
         layout = {
           gaps = 4;
@@ -106,8 +111,8 @@
 
             "Super+q".action = close-window;
             "Super+Shift+q".action.quit.skip-confirmation = true;
-            "Super+Equal".action = set-column-width "+10%";
-            "Super+Minus".action = set-column-width "-10%";
+            "Super+Equal".action = set-column-width "+5%";
+            "Super+Minus".action = set-column-width "-5%";
 
             "Super+f".action = fullscreen-window;
             "Super+Left".action = focus-column-or-monitor-left;

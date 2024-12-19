@@ -22,6 +22,42 @@
       lz-n.enable = true;
       web-devicons.enable = true;
       transparent.enable = true;
+      neocord.enable = true;
+      intellitab.enable = true;
+
+      telescope = {
+        enable = true;
+        keymaps = {
+          "<leader>fg" = "live_grep";
+        };
+      };
+
+      which-key = {
+        enable = true;
+      };
+
+      snacks = {
+        enable = true;
+        settings = {
+          bigfile = {
+            enabled = true;
+          };
+          notifier = {
+            enabled = true;
+            timeout = 3000;
+          };
+          quickfile = {
+            enabled = false;
+          };
+          statuscolumn = {
+            enabled = false;
+          };
+          words = {
+            debounce = 100;
+            enabled = true;
+          };
+        };
+      };
 
       mini = {
         enable = true;
@@ -57,11 +93,12 @@
             };
             evaluate_single = true;
             header = ''
-              ███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗
-              ████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║
-              ██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║
-              ██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║
-              ██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║
+              ██╗  ██╗██╗    ██╗  ██╗███████╗██████╗ ███████╗███╗   ███╗██╗
+              ██║  ██║██║    ██║ ██╔╝██╔════╝██╔══██╗██╔════╝████╗ ████║██║
+              ███████║██║    █████╔╝ █████╗  ██████╔╝█████╗  ██╔████╔██║██║
+              ██╔══██║██║    ██╔═██╗ ██╔══╝  ██╔══██╗██╔══╝  ██║╚██╔╝██║╚═╝
+              ██║  ██║██║    ██║  ██╗███████╗██║  ██║███████╗██║ ╚═╝ ██║██╗
+              ╚═╝  ╚═╝╚═╝    ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚═╝
             '';
             items = {
               "__unkeyed-1.buildtin_actions" = {
@@ -92,6 +129,7 @@
         };
       };
       lsp-format.enable = true;
+      leap.enable = true;
       blink-cmp = {
         enable = true;
         settings = {
