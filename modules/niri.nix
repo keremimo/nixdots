@@ -124,6 +124,8 @@
             "Super+J".action = focus-window-down-or-column-left;
             "Super+K".action = focus-window-up-or-column-right;
             "Print".action = shoot ''grim -g "$(slurp)" - | wl-copy'';
+            "XF86MonBrightnessUp".action.spawn = [ "brightnessctl" "set" "+5%" ];
+            "XF86MonBrightnessDown".action.spawn = [ "brightnessctl" "set" "5%-" ];
           };
       };
   };
