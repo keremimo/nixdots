@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   programs.nixvim = {
     enable = true;
 
@@ -149,15 +149,68 @@
         ];
       };
 
-      lsp-format = { enable = true; };
-
-      none-ls = {
+      conform-nvim = {
         enable = true;
-        sources.formatting = {
-          rubocop.enable = true;
-          nixfmt.enable = true;
+        settings = {
+          format_on_save = {
+            lsp_format = "fallback";
+            timeout_ms = 2000;
+          };
+          formatters_by_ft = {
+            ruby = [
+              "rubocop"
+            ];
+            bash = [
+              "shellcheck"
+              "shellharden"
+              "shfmt"
+            ];
+            cpp = [ "clang_format" ];
+            javascript = {
+              __unkeyed-1 = "prettierd";
+              __unkeyed-2 = "prettier";
+              timeout_ms = 2000;
+              stop_after_first = true;
+            };
+            "_" = [
+              "squeeze_blanks"
+              "trim_whitespace"
+              "trim_newlines"
+            ];
+          };
+
+          log_level = "warn";
+          notify_on_error = false;
+          notify_no_formatters = false;
+          formatters = {
+            rubocop = {
+              command = lib.getExe pkgs.rubocop;
+            };
+            shellcheck = {
+              command = lib.getExe pkgs.shellcheck;
+            };
+            shfmt = {
+              command = lib.getExe pkgs.shfmt;
+            };
+            shellharden = {
+              command = lib.getExe pkgs.shellharden;
+            };
+            squeeze_blanks = {
+              command = lib.getExe' pkgs.coreutils "cat";
+            };
+          };
         };
       };
+
+      # lsp-format = { enable = true; };
+      #
+      # none-ls = {
+      #   enable = true;
+      #   sources.formatting = {
+      #     rubocop.enable = true;
+      #     nixfmt.enable = true;
+      #   };
+      # };
 
       luasnip = {
         enable = true;
@@ -201,6 +254,9 @@
           ruby_lsp = {
             enable = true;
             cmd = [ "bundle" "exec" "ruby-lsp" ];
+          };
+          rubocop = {
+            enable = true;
           };
         };
       };
