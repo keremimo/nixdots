@@ -127,7 +127,15 @@
           trigger = { signature_help = { enabled = true; }; };
         };
       };
-      neo-tree.enable = true;
+      neo-tree = {
+        enable = true;
+        enableRefreshOnWrite = true;
+        closeIfLastWindow = true;
+        hideRootNode = true;
+        popupBorderStyle = "rounded";
+        window.position = "right";
+        window.width = 20;
+      };
 
       cmp = {
         autoEnableSources = true;
