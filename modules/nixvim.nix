@@ -238,6 +238,9 @@
           ];
         };
       };
+
+      lsp-signature = { enable = true; };
+      friendly-snippets.enable = true;
       lsp = {
         enable = true;
         capabilities = ''
@@ -256,6 +259,16 @@
           };
         };
         servers = {
+          emmet_language_server = {
+            enable = true;
+            package = pkgs.emmet-language-server;
+            filetypes = [
+              "html"
+              "jsx"
+              "tsx"
+              "erb"
+            ];
+          };
           cssls = {
             enable = true;
             package = pkgs.vscode-langservers-extracted;
@@ -272,6 +285,10 @@
           ruby_lsp = {
             enable = true;
             cmd = [ "bundle" "exec" "ruby-lsp" ];
+            filetypes = [
+              "ruby"
+              "eruby"
+            ];
           };
           rubocop = {
             enable = true;

@@ -93,6 +93,8 @@
     packages = with pkgs; [
       #  thunderbird
       vscode-fhs
+      xwayland-satellite
+      xwayland-run
     ];
   };
 
@@ -149,5 +151,5 @@
   ];
   environment.variables.EDITOR = "nvim";
 
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "24.11";
 }
