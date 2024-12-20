@@ -27,6 +27,7 @@
     lolcat
     mako
     swww
+    swaynotificationcenter
 
     zip
     xz

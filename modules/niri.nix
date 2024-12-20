@@ -26,7 +26,7 @@
             command = sh "waybar";
           }
           {
-            command = sh "mako";
+            command = sh "swaync";
           }
           {
             command = sh "swww-daemon";
