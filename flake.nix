@@ -31,7 +31,7 @@
     , niri
     , stylix
     , ...
-    }: {
+    }@inputs: {
       nixpkgs.overlays = [ niri.overlays.niri ];
       nixosConfigurations.Victimus = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -92,6 +92,7 @@
       };
       nixosConfigurations.L14 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
           ./devices/L14
@@ -99,6 +100,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.kerem = {
               imports = [
                 ./home.nix
@@ -107,6 +109,8 @@
                 niri.homeModules.niri
                 niri.homeModules.stylix
                 stylix.homeManagerModules.stylix
+                inputs.spicetify-nix.homeManagerModules.default
+                ./modules/spicetify.nix
               ];
             };
           }
