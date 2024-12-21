@@ -29,6 +29,8 @@
     swww
     swaynotificationcenter
 
+    stremio
+
     zip
     xz
     unzip

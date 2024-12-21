@@ -16,6 +16,8 @@
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
+  services.logind.lidSwitchExternalPower = "ignore";
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

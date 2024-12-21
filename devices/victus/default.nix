@@ -7,27 +7,25 @@
     enable32Bit = true;
   };
 
-  # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.opengl.driSupport32Bit = true; # For 32 bit applications
 
-  services.displayManager.sddm = {
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
+
+  services.xserver.displayManager.gdm = {
     enable = true;
-    settings = {
-      Autologin = {
-        Session = "Hyprland";
-        User = "kerem";
-      };
-    };
+    wayland = true;
   };
+  services.xserver.desktopManager.gnome.enable = true;
 
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.beta;
     # Modesetting is required.
     modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
     open = false;
-    forceFullCompositionPipeline = true;
+    forceFullCompositionPipeline = false;
 
     prime = {
       amdgpuBusId = "PCI:06:00:0";
