@@ -16,7 +16,10 @@
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
-  services.logind.lidSwitchExternalPower = "ignore";
+  services.logind = {
+    lidSwitchExternalPower = "ignore";
+    lidSwitchDocked = "ignore";
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

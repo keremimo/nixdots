@@ -32,8 +32,38 @@
     , stylix
     , ...
     }@inputs: {
-      nixpkgs.overlays = [ niri.overlays.niri ];
-      nixosConfigurations.Victimus = nixpkgs.lib.nixosSystem {
+      nixpkgs.overlays = [
+        niri.overlays.niri
+      ];
+      nixosConfigurations.VictimusAMD = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./configuration.nix
+          ./devices/victus/default.nix
+          ./devices/victus/victus-hardware.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.kerem = {
+              imports = [
+                ./home.nix
+                catppuccin.homeManagerModules.catppuccin
+                nixvim.homeManagerModules.nixvim
+                niri.homeModules.niri
+                stylix.homeManagerModules.stylix
+                niri.homeModules.stylix
+              ];
+            };
+          }
+          {
+            environment.systemPackages = [
+              ghostty.packages.x86_64-linux.default
+            ];
+          }
+        ];
+      };
+      nixosConfigurations.VictimusGPU = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
