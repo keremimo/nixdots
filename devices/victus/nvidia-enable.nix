@@ -1,4 +1,5 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
+
 {
   # NVIDIA Enabled below:
   boot = {
@@ -15,6 +16,10 @@
       "nvidia_drm"
     ];
   };
+
+  environment.systemPackages = [
+    pkgs-unstable.obs-studio
+  ];
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];

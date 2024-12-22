@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-
+    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,13 +30,20 @@
     , nixvim
     , niri
     , stylix
+    , unstable
     , ...
-    }@inputs: {
+    }@inputs:
+    let
+      system = "x86_64-linux";
+      lib = nixpkgs.lib;
+      pkgs-unstable = unstable.legacyPackages.${system};
+    in
+    {
       nixpkgs.overlays = [
         niri.overlays.niri
       ];
-      nixosConfigurations.VictimusAMD = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+      nixosConfigurations.VictimusAMD = lib.nixosSystem {
+        inherit system;
         modules = [
           ./configuration.nix
           ./devices/victus/default.nix
@@ -60,12 +67,13 @@
           {
             environment.systemPackages = [
               ghostty.packages.x86_64-linux.default
+
             ];
           }
         ];
       };
-      nixosConfigurations.VictimusGPU = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+      nixosConfigurations.VictimusGPU = lib.nixosSystem {
+        inherit system;
         modules = [
           ./configuration.nix
           ./devices/victus/default.nix
@@ -92,9 +100,10 @@
             ];
           }
         ];
+        specialArgs = { inherit pkgs-unstable; };
       };
       nixosConfigurations.ThinkChad = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
         modules = [
           ./configuration.nix
           ./devices/t480
@@ -123,7 +132,7 @@
         ];
       };
       nixosConfigurations.L14 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix

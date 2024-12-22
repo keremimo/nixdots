@@ -29,7 +29,6 @@
     mako
     swww
     swaynotificationcenter
-
     stremio
 
     zip

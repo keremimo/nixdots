@@ -21,6 +21,8 @@
     lidSwitchDocked = "ignore";
   };
 
+  services.power-profiles-daemon.enable = false;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -206,6 +208,7 @@
     gcc
     sqlite
     xfce.thunar
+    gnome-tweaks
   ];
   environment.variables.EDITOR = "nvim";
 
