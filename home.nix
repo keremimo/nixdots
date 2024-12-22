@@ -10,6 +10,7 @@
     ./modules/nixvim.nix
     ./modules/niri.nix
     ./modules/waybar.nix
+    ./modules/gnome.nix
   ];
 
   home.username = "kerem";

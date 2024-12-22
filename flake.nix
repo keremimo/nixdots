@@ -41,6 +41,7 @@
           ./configuration.nix
           ./devices/victus/default.nix
           ./devices/victus/victus-hardware.nix
+          ./devices/victus/nvidia-disable.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -69,6 +70,7 @@
           ./configuration.nix
           ./devices/victus/default.nix
           ./devices/victus/victus-hardware.nix
+          ./devices/victus/nvidia-enable.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
