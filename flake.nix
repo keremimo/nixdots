@@ -10,7 +10,7 @@
     };
     catppuccin.url = "github:catppuccin/nix";
     ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
-    nixvim.url = "github:Keremimo/nixdots?dir=apps/nixdots";
+    nixvim.url = "github:Keremimo/nixdots?dir=apps/nixvim";
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -79,6 +79,7 @@
           ./devices/victus/default.nix
           ./devices/victus/victus-hardware.nix
           ./devices/victus/nvidia-enable.nix
+          nixvim.nixosModules.nixvim
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -87,7 +88,6 @@
               imports = [
                 ./home.nix
                 catppuccin.homeManagerModules.catppuccin
-                nixvim.homeManagerModules.nixvim
                 niri.homeModules.niri
                 stylix.homeManagerModules.stylix
                 niri.homeModules.stylix
