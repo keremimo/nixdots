@@ -85,6 +85,7 @@
 
     aerc
     senpai
+    ulauncher
   ];
 
   programs.direnv = {
