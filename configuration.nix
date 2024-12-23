@@ -29,8 +29,6 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   programs.xwayland.enable = true;
-  programs.niri.enable = true;
-  programs.niri.package = pkgs.niri;
 
   programs.steam = {
     enable = true;
