@@ -57,7 +57,6 @@
               imports = [
                 ./home.nix
                 catppuccin.homeManagerModules.catppuccin
-                nixvim.homeManagerModules.nixvim
                 niri.homeModules.niri
                 stylix.homeManagerModules.stylix
                 niri.homeModules.stylix

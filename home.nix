@@ -7,7 +7,6 @@
   imports = [
     ./modules/fish.nix
     ./modules/starship.nix
-    ./modules/nixvim.nix
     ./modules/niri.nix
     ./modules/waybar.nix
     ./modules/gnome.nix
