@@ -30,13 +30,11 @@
     , nixvim
     , niri
     , stylix
-    , unstable
     , ...
     }@inputs:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
-      pkgs-unstable = unstable.legacyPackages.${system};
     in
     {
       home-manager.backupFileExtension = "backup";
@@ -55,6 +53,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.kerem = {
               imports = [
                 ./home.nix
@@ -89,6 +88,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.kerem = {
               imports = [
                 ./home.nix
@@ -119,6 +119,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.kerem = {
               imports = [
                 ./home.nix
