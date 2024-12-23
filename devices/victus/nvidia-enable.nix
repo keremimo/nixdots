@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, ... }:
 
 {
   # NVIDIA Enabled below:
@@ -17,8 +17,8 @@
     ];
   };
 
-  environment.systemPackages = [
-    pkgs-unstable.obs-studio
+  environment.systemPackages = with pkgs; [
+    obs-studio
   ];
 
   # Load nvidia driver for Xorg and Wayland

@@ -39,11 +39,13 @@
       pkgs-unstable = unstable.legacyPackages.${system};
     in
     {
+      home-manager.backupFileExtension = "backup";
       nixpkgs.overlays = [
         niri.overlays.niri
       ];
       nixosConfigurations.VictimusAMD = lib.nixosSystem {
         inherit system;
+        specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
           ./devices/victus/default.nix
@@ -60,6 +62,8 @@
                 niri.homeModules.niri
                 stylix.homeManagerModules.stylix
                 niri.homeModules.stylix
+                inputs.spicetify-nix.homeManagerModules.default
+                ./modules/spicetify.nix
               ];
             };
           }
@@ -73,6 +77,9 @@
       };
       nixosConfigurations.VictimusGPU = lib.nixosSystem {
         inherit system;
+        specialArgs = {
+          inherit inputs;
+        };
         modules = [
           ./configuration.nix
           ./devices/victus/default.nix
@@ -90,6 +97,8 @@
                 stylix.homeManagerModules.stylix
                 niri.homeModules.stylix
                 nixvim.homeManagerModules.nixvim
+                inputs.spicetify-nix.homeManagerModules.default
+                ./modules/spicetify.nix
               ];
             };
           }
@@ -99,10 +108,10 @@
             ];
           }
         ];
-        specialArgs = { inherit pkgs-unstable; };
       };
       nixosConfigurations.ThinkChad = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
           ./devices/t480
@@ -120,6 +129,8 @@
                 niri.homeModules.niri
                 stylix.homeManagerModules.stylix
                 niri.homeModules.stylix
+                inputs.spicetify-nix.homeManagerModules.default
+                ./modules/spicetify.nix
               ];
             };
           }
