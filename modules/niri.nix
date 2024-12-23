@@ -16,8 +16,6 @@
   };
 
   programs.niri = {
-    enable = true;
-    package = pkgs.niri;
     settings =
       let
         sh = cmd: [ "sh" "-c" (lib.escape [ "\"" ] cmd) ];

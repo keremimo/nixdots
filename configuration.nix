@@ -21,6 +21,11 @@
     lidSwitchDocked = "ignore";
   };
 
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri;
+  };
+
   services.power-profiles-daemon.enable = false;
 
   # Bootloader.
