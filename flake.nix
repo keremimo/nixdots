@@ -10,7 +10,7 @@
     };
     catppuccin.url = "github:catppuccin/nix";
     ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
-    nixvim.url = "github:nix-community/nixvim/nixos-24.11";
+    nixvim.url = "github:Keremimo/nixdots?dir=apps/nixdots";
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
