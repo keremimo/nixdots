@@ -644,11 +644,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1734976658,
-        "narHash": "sha256-bjdRJpxsAoydkwEzZJu+RaZjjvfEJ5RJxNtfJQve5mw=",
+        "lastModified": 1734980924,
+        "narHash": "sha256-A4WQXDG5BJYXiABVFb8b0OucvYps8cV+cBI2g7RLLAg=",
         "owner": "Keremimo",
         "repo": "nixvim",
-        "rev": "2ae637a95c4de1c111554d2876316544f9d01b73",
+        "rev": "675a5c1f7576559206a093f056219d392067b520",
         "type": "github"
       },
       "original": {
