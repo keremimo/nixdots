@@ -46,6 +46,10 @@
             scroll-factor = 0.5;
             scroll-method = "on-button-down";
           };
+          touchpad = {
+            accel-profile = "flat";
+            scroll-factor = 0.5;
+          };
         };
         layout = {
           gaps = 4;
@@ -118,11 +122,17 @@
             "Super+f".action = fullscreen-window;
             "Super+Left".action = focus-column-or-monitor-left;
             "Super+Right".action = focus-column-or-monitor-right;
+            "Super+Shift+Left".action = move-column-left;
+            "Super+Shift+Right".action = move-column-right;
+
+            "Super+C".action = center-column;
+            "Super+W".action = consume-window-into-column;
+            "Super+E".action = expel-window-from-column;
 
             "Super+H".action = focus-column-left;
             "Super+L".action = focus-column-right;
-            "Super+J".action = focus-window-down-or-column-left;
-            "Super+K".action = focus-window-up-or-column-right;
+            "Super+J".action = focus-workspace-down;
+            "Super+K".action = focus-workspace-up;
             "Print".action = shoot ''grim -g "$(slurp)" - | wl-copy'';
             "XF86MonBrightnessUp".action.spawn = [ "brightnessctl" "set" "+5%" ];
             "XF86MonBrightnessDown".action.spawn = [ "brightnessctl" "set" "5%-" ];
