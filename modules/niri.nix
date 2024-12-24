@@ -6,6 +6,11 @@
   stylix = {
     enable = true;
     autoEnable = true;
+    cursor = {
+      package = pkgs.banana-cursor;
+      name = "Banana";
+      size = 32;
+    };
     image = pkgs.fetchurl {
       url = "https://w.wallhaven.cc/full/yx/wallhaven-yxdrex.png";
       sha256 = "sha256-lLpIOKdyH4YaIO1Yw0wxWGhTEPYdSMLzMedoDQ5ko/o=";
@@ -16,6 +21,7 @@
   };
 
   programs.niri = {
+    package = pkgs.niri;
     settings =
       let
         sh = cmd: [ "sh" "-c" (lib.escape [ "\"" ] cmd) ];
