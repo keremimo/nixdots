@@ -9,7 +9,6 @@
     ./modules/starship.nix
     ./modules/niri.nix
     ./modules/waybar.nix
-    ./modules/gnome.nix
   ];
 
   home.username = "kerem";
