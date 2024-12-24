@@ -62,6 +62,7 @@
     gnomeExtensions.sound-output-device-chooser
     gnomeExtensions.space-bar
     gnomeExtensions.applications-menu
+    gnomeExtensions.unite-shell
   ];
 }
 
