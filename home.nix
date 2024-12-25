@@ -96,6 +96,10 @@
     nix-direnv.enable = true;
   };
 
+  programs.lazygit = {
+    enable = true;
+  };
+
   programs.git = {
     enable = true;
     userName = "Kerem Kilic";
