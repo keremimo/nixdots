@@ -51,7 +51,7 @@
 
   services.xserver.desktopManager.gnome.enable = true;
   services.displayManager = {
-    autologin = {
+    autoLogin = {
       enable = true;
       user = "kerem";
     };
