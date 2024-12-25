@@ -107,7 +107,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       #  thunderbird
-      vscode-fhs
       xwayland-satellite
       xwayland-run
     ];
@@ -212,6 +211,7 @@
     sqlite
     xfce.thunar
     gnome-tweaks
+    vscode
   ];
   environment.variables.EDITOR = "nvim";
 

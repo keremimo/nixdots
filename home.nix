@@ -80,7 +80,6 @@
     wl-clipboard
     devenv
 
-    vscodium
     foliate
 
     aerc

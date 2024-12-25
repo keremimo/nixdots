@@ -24,6 +24,7 @@
         "status-icons@gnome-shell-extensions.gcampax.github.com"
         "space-bar@luchrioh"
         "dash-to-panel@jderose9.github.com"
+        "unite@hardpixel.eu"
       ];
     };
     "org/gnome/desktop/peripherals/mouse" = {
@@ -32,6 +33,22 @@
 
     "org/gnome/shell/extensions/paperwm/keybindings" = {
       close-window = [ "<Super>q" ];
+    };
+
+    "org/gnome/shell/extensions/unite" = {
+      greyscale-tray-icons = false;
+      hide-activities-button = "always";
+      hide-app-menu-icon = false;
+      hide-window-titlebars = "always";
+      restrict-to-primary-screen = false;
+      show-appmenu-button = true;
+      show-desktop-name = false;
+      show-legacy-tray = true;
+      show-window-buttons = "never";
+      show-window-title = "never";
+      use-activities-text = true;
+      window-buttons-placement = "first";
+      window-buttons-theme = "catppuccin";
     };
 
     "org/gnome/shell/extensions/dash-to-panel" = {
