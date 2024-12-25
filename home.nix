@@ -85,6 +85,8 @@
     aerc
     senpai
     ulauncher
+
+    jetbrains-toolbox
   ];
 
   programs.direnv = {

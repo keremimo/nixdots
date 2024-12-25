@@ -49,7 +49,6 @@
           ./devices/victus/default.nix
           ./devices/victus/victus-hardware.nix
           ./devices/victus/nvidia-disable.nix
-          niri.nixosModules.niri
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

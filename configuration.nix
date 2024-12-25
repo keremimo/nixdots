@@ -42,12 +42,24 @@
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  services.xserver.displayManager = {
+    gdm = {
+      enable = true;
+      wayland = true;
+    };
+  };
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager = {
+    autologin = {
+      enable = true;
+      user = "kerem";
+    };
+  };
 
+  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -65,7 +77,6 @@
 
   users.users.kerem.shell = pkgs.fish;
 
-  # services.xserver.desktopManager.gnome.enable = true;
   programs.hyprland.enable = true;
 
   # Configure keymap in X11
@@ -87,16 +98,9 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kerem = {
     isNormalUser = true;
     description = "Kerem";
@@ -109,10 +113,8 @@
     ];
   };
 
-  # Install firefox.
   programs.firefox.enable = true;
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   fonts.packages = with pkgs; [
@@ -137,8 +139,6 @@
     # seahorse
     # sushi
     # sysprof
-    #
-    # gnome-shell-extensions
     #
     # adwaita-icon-theme
     # nixos-background-info

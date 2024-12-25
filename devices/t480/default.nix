@@ -11,7 +11,6 @@
 
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  programs.xwayland.enable = true;
 
   services.tlp = {
     enable = true;
@@ -33,14 +32,6 @@
       PLATFORM_PROFILE_ON_BAT = "cool";
     };
   };
-
-  # Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "kerem";
-
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
 
   services.pcscd.enable = true;
   programs.gnupg.agent = {

@@ -34,10 +34,4 @@
       CPU_SCALING_MAX_FREQ_ON_BAT = 1200000;
     };
   };
-
-  services.xserver.displayManager.gdm = {
-    enable = true;
-    wayland = true;
-  };
-  services.xserver.desktopManager.gnome.enable = true;
 }
