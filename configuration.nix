@@ -10,6 +10,10 @@
     trusted-users = root kerem
   '';
 
+  imports = [
+    # ./modules/qemu.nix # No good for now
+  ];
+
   environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
 
   hardware.bluetooth.enable = true;
