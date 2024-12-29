@@ -35,7 +35,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   programs.xwayland.enable = true;
 
@@ -74,7 +74,10 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "displaylink" "modesetting" ];
+  };
 
 
   programs.fish.enable = true;
@@ -189,6 +192,8 @@
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
+    # linuxPackages.evdi
+    # displaylink
     wl-clipboard
     gnumake
     git
