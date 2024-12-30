@@ -1,5 +1,6 @@
 { config
 , pkgs
+, unstable
 , inputs
 , ...
 }: {
@@ -13,6 +14,13 @@
     ./modules/tmux.nix
   ];
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      ghostty = unstable.ghostty;
+    })
+  ];
+
+
   home.username = "kerem";
   home.homeDirectory = "/home/kerem";
 
@@ -22,6 +30,10 @@
   };
 
   home.packages = with pkgs; [
+    ghostty
+    imagemagick
+    tesseract
+    okular
     fastfetch
     yazi
     stow

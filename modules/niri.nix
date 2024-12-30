@@ -140,6 +140,7 @@
             "Super+J".action = focus-workspace-down;
             "Super+K".action = focus-workspace-up;
             "Print".action = shoot ''grim -g "$(slurp)" - | wl-copy'';
+            "Ctrl+Print". action = shoot ''grim -g "$(slurp)" - | magick png:- -colorspace Gray -depth 8 -resample 400x400 tif:- | tesseract --oem 2 --psm 6 -l eng - - | wl-copy'';
             "XF86MonBrightnessUp".action.spawn = [ "brightnessctl" "set" "+5%" ];
             "XF86MonBrightnessDown".action.spawn = [ "brightnessctl" "set" "5%-" ];
           };
