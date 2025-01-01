@@ -9,7 +9,7 @@
     cursor = {
       package = pkgs.banana-cursor;
       name = "Banana";
-      size = 32;
+      size = 28;
     };
     image = pkgs.fetchurl {
       url = "https://w.wallhaven.cc/full/yx/wallhaven-yxdrex.png";
@@ -49,7 +49,7 @@
           mouse = {
             accel-profile = "flat";
             scroll-button = 274;
-            scroll-factor = 0.5;
+            scroll-factor = 0.8;
             scroll-method = "on-button-down";
           };
           touchpad = {

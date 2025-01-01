@@ -224,5 +224,9 @@
   ];
   environment.variables.EDITOR = "nvim";
 
+  environment.variables = {
+    WLR_EVDI_RENDER_DEVICE = "/dev/dri/card1";
+  };
+
   system.stateVersion = "24.11";
 }
