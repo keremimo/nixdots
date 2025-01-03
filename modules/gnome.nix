@@ -12,7 +12,6 @@
     "org/gnome/shell" = {
       favorite-apps = [
         "firefox.desktop"
-        "ghostty.desktop"
         "spotify.desktop"
         "nautilus.desktop"
       ];

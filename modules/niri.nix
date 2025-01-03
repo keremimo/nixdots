@@ -113,7 +113,7 @@
             "XF86AudioLowerVolume".action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-" ];
 
             "Super+Space".action.spawn = "fuzzel";
-            "Super+T".action.spawn = "ghostty";
+            "Super+T".action.spawn = "kitty";
             "Super+B".action.spawn = "firefox";
             "Super+1".action = focus-workspace 1;
             "Super+2".action = focus-workspace 2;
