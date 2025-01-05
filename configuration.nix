@@ -194,6 +194,7 @@
     #  wget
     # linuxPackages.evdi
     # displaylink
+    ghostty
     wl-clipboard
     gnumake
     git

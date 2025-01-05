@@ -10,6 +10,7 @@
   };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,7 +21,7 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:danth/stylix/release-24.11";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,9 +43,6 @@
     in
     {
       home-manager.backupFileExtension = "backup";
-      nixpkgs.overlays = [
-        niri.overlays.niri
-      ];
       nixosConfigurations.VictimusAMD = lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
