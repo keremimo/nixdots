@@ -19,6 +19,7 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
+  hardware.keyboard.qmk.enable = true;
 
   services.logind = {
     lidSwitchExternalPower = "ignore";
@@ -194,6 +195,7 @@
     #  wget
     # linuxPackages.evdi
     # displaylink
+    qmk
     ghostty
     wl-clipboard
     gnumake
