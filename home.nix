@@ -22,6 +22,9 @@
   };
 
   home.packages = with pkgs; [
+    imagemagick
+    tesseract
+    okular
     fastfetch
     yazi
     stow

@@ -9,7 +9,7 @@
     cursor = {
       package = pkgs.banana-cursor;
       name = "Banana";
-      size = 32;
+      size = 28;
     };
     image = pkgs.fetchurl {
       url = "https://w.wallhaven.cc/full/yx/wallhaven-yxdrex.png";
@@ -49,7 +49,7 @@
           mouse = {
             accel-profile = "flat";
             scroll-button = 274;
-            scroll-factor = 0.5;
+            scroll-factor = 0.8;
             scroll-method = "on-button-down";
           };
           touchpad = {
@@ -113,7 +113,7 @@
             "XF86AudioLowerVolume".action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-" ];
 
             "Super+Space".action.spawn = "fuzzel";
-            "Super+T".action.spawn = "ghostty";
+            "Super+T".action.spawn = "kitty";
             "Super+B".action.spawn = "firefox";
             "Super+1".action = focus-workspace 1;
             "Super+2".action = focus-workspace 2;
@@ -140,6 +140,7 @@
             "Super+J".action = focus-workspace-down;
             "Super+K".action = focus-workspace-up;
             "Print".action = shoot ''grim -g "$(slurp)" - | wl-copy'';
+            "Ctrl+Print". action = shoot ''grim -g "$(slurp)" - | magick png:- -colorspace Gray -depth 8 -resample 400x400 tif:- | tesseract --oem 2 --psm 6 -l eng - - | wl-copy'';
             "XF86MonBrightnessUp".action.spawn = [ "brightnessctl" "set" "+5%" ];
             "XF86MonBrightnessDown".action.spawn = [ "brightnessctl" "set" "5%-" ];
           };

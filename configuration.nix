@@ -10,11 +10,16 @@
     trusted-users = root kerem
   '';
 
+  imports = [
+    # ./modules/qemu.nix # No good for now
+  ];
+
   environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
+  hardware.keyboard.qmk.enable = true;
 
   services.logind = {
     lidSwitchExternalPower = "ignore";
@@ -31,7 +36,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   programs.xwayland.enable = true;
 
@@ -70,7 +75,10 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "displaylink" "modesetting" ];
+  };
 
 
   programs.fish.enable = true;
@@ -185,6 +193,10 @@
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
+    # linuxPackages.evdi
+    # displaylink
+    qmk
+    ghostty
     wl-clipboard
     gnumake
     git
@@ -214,6 +226,10 @@
     vscode
   ];
   environment.variables.EDITOR = "nvim";
+
+  environment.variables = {
+    WLR_EVDI_RENDER_DEVICE = "/dev/dri/card1";
+  };
 
   system.stateVersion = "24.11";
 }

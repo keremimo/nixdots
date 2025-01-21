@@ -1,6 +1,13 @@
 {
   description = "Victus";
-
+  nixConfig = {
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -9,13 +16,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
-    ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
     nixvim.url = "github:Keremimo/nixvim";
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:danth/stylix/release-24.11";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,7 +32,6 @@
     { nixpkgs
     , catppuccin
     , home-manager
-    , ghostty
     , nixvim
     , niri
     , stylix
@@ -38,9 +43,6 @@
     in
     {
       home-manager.backupFileExtension = "backup";
-      nixpkgs.overlays = [
-        niri.overlays.niri
-      ];
       nixosConfigurations.VictimusAMD = lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
@@ -49,6 +51,7 @@
           ./devices/victus/default.nix
           ./devices/victus/victus-hardware.nix
           ./devices/victus/nvidia-disable.nix
+          nixvim.nixosModules.nixvim
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -68,8 +71,6 @@
           }
           {
             environment.systemPackages = [
-              ghostty.packages.x86_64-linux.default
-
             ];
           }
         ];
@@ -105,7 +106,6 @@
           }
           {
             environment.systemPackages = [
-              ghostty.packages.x86_64-linux.default
             ];
           }
         ];
@@ -121,6 +121,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.backupFileExtension = "backup";
             home-manager.users.kerem = {
               imports = [
                 ./home.nix
@@ -138,7 +139,7 @@
           }
           {
             environment.systemPackages = [
-              ghostty.packages.x86_64-linux.default
+
             ];
           }
         ];
@@ -169,7 +170,6 @@
           }
           {
             environment.systemPackages = [
-              ghostty.packages.x86_64-linux.default
             ];
           }
         ];
