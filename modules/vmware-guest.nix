@@ -17,6 +17,8 @@ in
     (mkRenamedOptionModule [ "services" "vmwareGuest" ] [ "virtualisation" "vmware" "guest" ])
   ];
 
+  nix.settings.trusted-users = [ "root" "kerem" ];
+
   options.virtualisation.vmware.guest = {
     enable = mkEnableOption "VMWare Guest Support";
     headless = mkOption {
