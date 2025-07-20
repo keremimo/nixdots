@@ -1,6 +1,7 @@
 # i3 (X11)
 { pkgs, ... }: {
   specialisation.i3.configuration = {
+    nix.settings.trusted-users = [ "root" "kerem" ];
     # We need an XDG portal for various applications to work properly,
     # such as Flatpak applications.
     xdg.portal = {
