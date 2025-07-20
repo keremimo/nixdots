@@ -71,6 +71,7 @@ in {
     pkgs.watch
     pkgs.lua
     pkgs.ghostty
+    pkgs.unzip
 
     pkgs.gopls
     pkgs.zigpkgs."0.14.0"
