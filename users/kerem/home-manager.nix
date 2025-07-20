@@ -70,6 +70,7 @@ in {
     pkgs.tree
     pkgs.watch
     pkgs.lua
+    pkgs.ghostty
 
     pkgs.gopls
     pkgs.zigpkgs."0.14.0"
