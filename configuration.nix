@@ -10,25 +10,11 @@
     trusted-users = root kerem
   '';
 
-  imports = [
-    # ./modules/qemu.nix # No good for now
-  ];
-
   environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
-
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
-  hardware.keyboard.qmk.enable = true;
 
   services.logind = {
     lidSwitchExternalPower = "ignore";
     lidSwitchDocked = "ignore";
-  };
-
-  programs.niri = {
-    enable = true;
-    package = pkgs.niri;
   };
 
   services.power-profiles-daemon.enable = false;
