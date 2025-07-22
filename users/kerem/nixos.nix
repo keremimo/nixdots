@@ -17,8 +17,4 @@
     shell = pkgs.fish;
     hashedPassword = "$6$uPUP7G/ewM3IOJuR$BUenC48i2WLXOdbf2AwC5Vyxl1N7lGiNEb/vCwOdYPfaLrIRH8elL/5o4vbJ.7vgjxGn1fr.uZWVNuIrPaqlo1";
   };
-
-  nixpkgs.overlays = import ../../lib/overlays.nix ++ [
-    (import ./vim.nix { inherit inputs; })
-  ];
 }

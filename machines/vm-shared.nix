@@ -100,7 +100,6 @@
     cachix
     gnumake
     killall
-    niv
     xclip
     neovim
 
