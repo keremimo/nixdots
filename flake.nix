@@ -87,6 +87,7 @@
         # Want the latest version of these
         claude-code = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.claude-code;
         nushell = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.nushell;
+        devenv = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.devenv;
 
         ibus = ibus_stable;
         ibus_stable = inputs.nixpkgs.legacyPackages.${prev.system}.ibus;

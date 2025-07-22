@@ -101,7 +101,6 @@
     gnumake
     killall
     niv
-    devenv
     xclip
     neovim
 

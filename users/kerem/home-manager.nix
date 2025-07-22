@@ -72,6 +72,7 @@ in {
     pkgs.lua
     pkgs.ghostty
     pkgs.unzip
+    pkgs.devenv
 
     pkgs.gopls
     pkgs.zigpkgs."0.14.0"

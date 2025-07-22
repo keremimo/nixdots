@@ -10,6 +10,13 @@
       config.common.default = "*";
     };
 
+    services.displayManager.autoLogin = {
+      enable = true;
+      user = "kerem";
+    };
+
+    services.picom.enable = true;
+
     services.xserver = {
       enable = true;
       xkb.layout = "us";
