@@ -14,6 +14,8 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnsupportedSystem = true;
 
+  services.xserver.xkbOptions = "compose:none";
+
   # This works through our custom module imported above
   virtualisation.vmware.guest.enable = true;
 

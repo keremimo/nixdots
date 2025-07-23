@@ -10,6 +10,19 @@
   # Be careful updating this.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  xdg.portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      config.common.default = "*";
+    };
+
+  services.displayManager.autoLogin = {
+      enable = true;
+      user = "kerem";
+    };
+
+  services.picom.enable = true;
+
   nix = {
     package = pkgs.nixVersions.latest;
     extraOptions = ''
@@ -24,6 +37,7 @@
     settings = {
       substituters = ["https://mitchellh-nixos-config.cachix.org"];
       trusted-public-keys = ["mitchellh-nixos-config.cachix.org-1:bjEbXJyLrL1HZZHBbO4QALnI5faYZppzkU4D2s0G8RQ="];
+      trusted-users = [ "root" "kerem" ];
     };
   };
 
@@ -117,11 +131,30 @@
 
   # Our default non-specialised desktop environment.
   services.xserver = lib.mkIf (config.specialisation != {}) {
-    enable = true;
-    xkb.layout = "us";
-    desktopManager.gnome.enable = true;
-    displayManager.gdm.enable = true;
-  };
+      enable = true;
+      xkb.layout = "us";
+      dpi = 220;
+
+      desktopManager = {
+        xterm.enable = false;
+        wallpaper.mode = "fill";
+      };
+
+      displayManager = {
+        defaultSession = "none+i3";
+        lightdm.enable = true;
+
+        # AARCH64: For now, on Apple Silicon, we must manually set the
+        # display resolution. This is a known issue with VMware Fusion.
+        sessionCommands = ''
+          ${pkgs.xorg.xset}/bin/xset r rate 200 40
+        '';
+      };
+
+      windowManager = {
+        i3.enable = true;
+      };
+    };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
