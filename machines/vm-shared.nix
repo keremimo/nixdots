@@ -2,9 +2,6 @@
 
 {
   imports = [
-    ../modules/specialization/plasma.nix
-    ../modules/specialization/i3.nix
-    ../modules/specialization/gnome-ibus.nix
   ];
 
   # Be careful updating this.
@@ -130,7 +127,7 @@
   ];
 
   # Our default non-specialised desktop environment.
-  services.xserver = lib.mkIf (config.specialisation != {}) {
+  services.xserver = {
       enable = true;
       xkb.layout = "us";
       dpi = 220;
