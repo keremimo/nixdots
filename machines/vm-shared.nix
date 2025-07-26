@@ -20,6 +20,7 @@
 
   services.picom.enable = true;
 
+  environment.etc."vmware-tools/tools.conf".source = ../users/kerem/tools.conf;
   nix = {
     package = pkgs.nixVersions.latest;
     extraOptions = ''

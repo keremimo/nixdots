@@ -56,18 +56,13 @@ floating_modifier $mod
 
 bindsym $mod+o exec rofi -show run
 
-bindsym $mod+r exec xrandr -s 0
-
 # start a terminal
 bindsym $mod+n exec ghostty --gtk-single-instance=true
 bindsym $mod+d split h
 bindsym $mod+Shift+d split v
 
-# temp, hacking on a tty
-bindsym $mod+Shift+n exec /home/kerem/bin/devtty --config-file=/home/kerem/.config/devtty/config
-
 # kill focused window
-bindsym $mod+w kill
+bindsym $mod+q kill
 
 # change focus
 bindsym $mod+h focus left
@@ -186,7 +181,7 @@ mode "$mode_resize" {
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "$mode_resize"
+bindsym $mod+w mode "$mode_resize"
 
 #----------------------------------------------------------------------
 # System Mode
