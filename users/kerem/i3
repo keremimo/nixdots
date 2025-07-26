@@ -43,7 +43,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id xsetroot -solid $back
 
 # Keyboard layout settings
-exec --no-startup-id setxkbmap us
+exec_always --no-startup-id setxkbmap us
 
 # Input methods
 exec --no-startup-id fcitx5 -d
@@ -55,6 +55,8 @@ exec --no-startup-id fcitx5 -d
 floating_modifier $mod
 
 bindsym $mod+o exec rofi -show run
+
+bindsym $mod+r exec xrandr -s 0
 
 # start a terminal
 bindsym $mod+n exec ghostty --gtk-single-instance=true
