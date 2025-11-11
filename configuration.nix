@@ -19,7 +19,6 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
-  hardware.keyboard.qmk.enable = true;
 
   services.logind = {
     lidSwitchExternalPower = "ignore";
@@ -36,7 +35,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   programs.xwayland.enable = true;
 
@@ -45,6 +44,13 @@
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
+
+  programs.gnupg = {
+    agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
 
   services.xserver.displayManager = {
@@ -77,7 +83,7 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    videoDrivers = [ "displaylink" "modesetting" ];
+    videoDrivers = [ "modesetting" ];
   };
 
 
@@ -114,9 +120,6 @@
     description = "Kerem";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      #  thunderbird
-      xwayland-satellite
-      xwayland-run
     ];
   };
 
@@ -134,51 +137,29 @@
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
-    nerdfonts
-  ];
+  ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
   environment.gnome.excludePackages = with pkgs; [
     orca
     evince
-    # file-roller
     geary
     gnome-disk-utility
-    # seahorse
-    # sushi
-    # sysprof
-    #
-    # adwaita-icon-theme
-    # nixos-background-info
     gnome-backgrounds
-    # gnome-bluetooth
-    # gnome-color-manager
-    # gnome-control-center
-    # gnome-shell-extensions
     gnome-tour # GNOME Shell detects the .desktop file on first log-in.
     gnome-user-docs
-    # glib # for gsettings program
-    # gnome-menus
-    # gtk3.out # for gtk-launch program
-    # xdg-user-dirs # Update user dirs as described in https://freedesktop.org/wiki/Software/xdg-user-dirs/
-    # xdg-user-dirs-gtk # Used to create the default bookmarks
-    #
     baobab
     epiphany
     gnome-text-editor
     gnome-calculator
     gnome-calendar
     gnome-characters
-    # gnome-clocks
     gnome-console
     gnome-contacts
     gnome-font-viewer
     gnome-logs
     gnome-maps
     gnome-music
-    # gnome-system-monitor
     gnome-weather
-    # loupe
-    # nautilus
     gnome-connections
     simple-scan
     snapshot
@@ -191,11 +172,12 @@
   # $ nix search wget
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-    # linuxPackages.evdi
-    # displaylink
     qmk
+    google-chrome
+    blueman
+    neovim
+    xwayland-satellite
+    xwayland-run
     ghostty
     wl-clipboard
     gnumake
@@ -223,12 +205,11 @@
     sqlite
     xfce.thunar
     gnome-tweaks
-    vscode
   ];
   environment.variables.EDITOR = "nvim";
 
   environment.variables = {
-    WLR_EVDI_RENDER_DEVICE = "/dev/dri/card1";
+    # WLR_EVDI_RENDER_DEVICE = "/dev/dri/card1";
   };
 
   system.stateVersion = "24.11";

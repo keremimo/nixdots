@@ -7,7 +7,6 @@
   imports = [
     ./modules/fish.nix
     ./modules/starship.nix
-    ./modules/niri.nix
     ./modules/waybar.nix
     ./modules/gnome.nix
     ./modules/tmux.nix
@@ -16,15 +15,9 @@
   home.username = "kerem";
   home.homeDirectory = "/home/kerem";
 
-  catppuccin = {
-    enable = true;
-    flavor = "mocha";
-  };
-
   home.packages = with pkgs; [
     imagemagick
     tesseract
-    okular
     fastfetch
     yazi
     stow
@@ -69,7 +62,7 @@
     usbutils #lsusb
 
     vesktop
-    nodejs_23
+    nodejs
     go
     rustup
     lua
@@ -81,7 +74,6 @@
     brightnessctl
     banana-cursor
     wl-clipboard
-    devenv
 
     foliate
 
@@ -105,7 +97,7 @@
   programs.git = {
     enable = true;
     userName = "Kerem Kilic";
-    userEmail = "code@kerem.tech";
+    userEmail = "git@keremk.be";
     extraConfig = {
       init = {
         defaultBranch = "main";

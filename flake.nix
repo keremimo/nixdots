@@ -9,13 +9,12 @@
     ];
   };
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix";
     nixvim.url = "github:Keremimo/nixvim";
     niri = {
       url = "github:sodiboo/niri-flake";
@@ -30,7 +29,6 @@
 
   outputs =
     { nixpkgs
-    , catppuccin
     , home-manager
     , nixvim
     , niri
@@ -43,15 +41,13 @@
     in
     {
       home-manager.backupFileExtension = "backup";
-      nixosConfigurations.VictimusAMD = lib.nixosSystem {
+      nixosConfigurations.legion = lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
-          ./devices/victus/default.nix
-          ./devices/victus/victus-hardware.nix
-          ./devices/victus/nvidia-disable.nix
-          nixvim.nixosModules.nixvim
+          ./devices/legion/default.nix
+          ./devices/legion/hardware.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -60,10 +56,8 @@
             home-manager.users.kerem = {
               imports = [
                 ./home.nix
-                catppuccin.homeManagerModules.catppuccin
                 niri.homeModules.niri
                 stylix.homeManagerModules.stylix
-                niri.homeModules.stylix
                 inputs.spicetify-nix.homeManagerModules.default
                 ./modules/spicetify.nix
               ];
@@ -71,75 +65,6 @@
           }
           {
             environment.systemPackages = [
-            ];
-          }
-        ];
-      };
-      nixosConfigurations.VictimusGPU = lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          ./configuration.nix
-          ./devices/victus/default.nix
-          ./devices/victus/victus-hardware.nix
-          ./devices/victus/nvidia-enable.nix
-          nixvim.nixosModules.nixvim
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.kerem = {
-              imports = [
-                ./home.nix
-                catppuccin.homeManagerModules.catppuccin
-                niri.homeModules.niri
-                stylix.homeManagerModules.stylix
-                niri.homeModules.stylix
-                inputs.spicetify-nix.homeManagerModules.default
-                ./modules/spicetify.nix
-              ];
-            };
-          }
-          {
-            environment.systemPackages = [
-            ];
-          }
-        ];
-      };
-      nixosConfigurations.ThinkChad = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./configuration.nix
-          ./devices/t480
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.backupFileExtension = "backup";
-            home-manager.users.kerem = {
-              imports = [
-                ./home.nix
-                ./devices/t480/git-signkey.nix
-                ./devices/t480/niri-t480.nix
-                catppuccin.homeManagerModules.catppuccin
-                nixvim.homeManagerModules.nixvim
-                niri.homeModules.niri
-                stylix.homeManagerModules.stylix
-                niri.homeModules.stylix
-                inputs.spicetify-nix.homeManagerModules.default
-                ./modules/spicetify.nix
-              ];
-            };
-          }
-          {
-            environment.systemPackages = [
-
             ];
           }
         ];
@@ -158,10 +83,6 @@
             home-manager.users.kerem = {
               imports = [
                 ./home.nix
-                catppuccin.homeManagerModules.catppuccin
-                nixvim.homeManagerModules.nixvim
-                niri.homeModules.niri
-                niri.homeModules.stylix
                 stylix.homeManagerModules.stylix
                 inputs.spicetify-nix.homeManagerModules.default
                 ./modules/spicetify.nix
