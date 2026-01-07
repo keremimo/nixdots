@@ -20,7 +20,7 @@
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
-  services.logind = {
+  services.logind.settings.Login = {
     lidSwitchExternalPower = "ignore";
     lidSwitchDocked = "ignore";
   };
@@ -53,14 +53,14 @@
     };
   };
 
-  services.xserver.displayManager = {
+  services.displayManager = {
     gdm = {
       enable = true;
       wayland = true;
     };
   };
 
-  services.xserver.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.enable = true;
   services.displayManager = {
     autoLogin = {
       enable = true;
@@ -86,7 +86,6 @@
     videoDrivers = [ "modesetting" ];
   };
 
-
   programs.fish.enable = true;
 
   users.users.kerem.shell = pkgs.fish;
@@ -103,7 +102,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -130,7 +129,7 @@
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     liberation_ttf
     fira-code
     fira-code-symbols

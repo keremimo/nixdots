@@ -23,9 +23,7 @@
     stow
     lolcat
     mako
-    swww
     swaynotificationcenter
-    stremio
 
     zip
     xz
@@ -37,7 +35,6 @@
     yq-go
     eza
     fzf
-    thefuck
 
     cowsay
     file
@@ -96,12 +93,15 @@
 
   programs.git = {
     enable = true;
-    userName = "Kerem Kilic";
-    userEmail = "git@keremk.be";
-    extraConfig = {
-      init = {
-        defaultBranch = "main";
+    settings = {
+      user = {
+        name = "Kerem Kilic";
+        email = "git@keremk.be";
+        init = {
+          defaultBranch = "main";
+        };
       };
+
     };
   };
 

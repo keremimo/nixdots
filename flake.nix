@@ -1,5 +1,5 @@
 {
-  description = "Victus";
+  description = "Kerem's Nixdots";
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
@@ -9,21 +9,18 @@
     ];
   };
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager/release-25.11";
     };
     nixvim.url = "github:Keremimo/nixvim";
     niri = {
       url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "github:danth/stylix/release-24.11";
+    stylix.url = "github:danth/stylix/release-25.11";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -57,7 +54,33 @@
               imports = [
                 ./home.nix
                 niri.homeModules.niri
-                stylix.homeManagerModules.stylix
+                stylix.homeModules.stylix
+                inputs.spicetify-nix.homeManagerModules.default
+                ./modules/spicetify.nix
+              ];
+            };
+          }
+          {
+            environment.systemPackages = [
+            ];
+          }
+        ];
+      };
+      nixosConfigurations.desktop = lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./configuration.nix
+          ./devices/desktop/default.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.users.kerem = {
+              imports = [
+                ./home.nix
+                stylix.homeModules.stylix
                 inputs.spicetify-nix.homeManagerModules.default
                 ./modules/spicetify.nix
               ];
@@ -83,7 +106,7 @@
             home-manager.users.kerem = {
               imports = [
                 ./home.nix
-                stylix.homeManagerModules.stylix
+                stylix.homeModules.stylix
                 inputs.spicetify-nix.homeManagerModules.default
                 ./modules/spicetify.nix
               ];

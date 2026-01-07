@@ -21,5 +21,4 @@
     enable = true;
     enableFishIntegration = true;
   };
-  programs.thefuck.enable = true;
 }
