@@ -20,6 +20,18 @@
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
+  security.pam.services = {
+    greetd.enableGnomeKeyring = true;
+    greetd-password.enableGnomeKeyring = true;
+    login.enableGnomeKeyring = true;
+  };
+  services.dbus.packages = [ pkgs.gnome-keyring pkgs.gcr ];
+
+  services.xserver.displayManager.sessionCommands = ''
+    eval $(gnome-keyring-daemon --start --daemonize --components=ssh,secrets)
+    export SSH_AUTH_SOCK
+  '';
+
   services.logind.settings.Login = {
     lidSwitchExternalPower = "ignore";
     lidSwitchDocked = "ignore";
@@ -44,6 +56,9 @@
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    gamescopeSession = {
+      enable = true;
+    };
   };
 
   programs.gnupg = {
@@ -171,6 +186,7 @@
   # $ nix search wget
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   environment.systemPackages = with pkgs; [
+    lact
     qmk
     google-chrome
     blueman
@@ -206,6 +222,11 @@
     gnome-tweaks
   ];
   environment.variables.EDITOR = "nvim";
+  systemd.packages = with pkgs; [ lact ];
+  systemd.services.lactd = {
+    enable = true;
+    wantedBy = [ "multi-user.target" ];
+  };
 
   environment.variables = {
     # WLR_EVDI_RENDER_DEVICE = "/dev/dri/card1";

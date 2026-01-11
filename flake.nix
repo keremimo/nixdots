@@ -81,6 +81,9 @@
               imports = [
                 ./home.nix
                 stylix.homeModules.stylix
+                niri.homeModules.niri
+                niri.homeModules.stylix
+                ./modules/niri.nix
                 inputs.spicetify-nix.homeManagerModules.default
                 ./modules/spicetify.nix
               ];

@@ -7,11 +7,21 @@
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
+  hardware.amdgpu.overdrive.enable = true;
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "uas" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+
+  programs.gamescope = {
+  enable = true;
+  capSysNice = false;
+};
+  environment.systemPackages = with pkgs; [
+  gamescope-wsi # HDR won't work without this
+];
+
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/d402b9c8-48ce-4ef8-8541-8141cae5542e";

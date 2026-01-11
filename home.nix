@@ -15,6 +15,11 @@
   home.username = "kerem";
   home.homeDirectory = "/home/kerem";
 
+  xdg.configFile."mimeapps.list".force = true;
+    xdg.mimeApps = {
+    enable = true;
+    };
+
   home.packages = with pkgs; [
     imagemagick
     tesseract

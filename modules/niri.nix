@@ -21,6 +21,7 @@
   };
 
   programs.niri = {
+    enable = true;
     package = pkgs.niri;
     settings =
       let
@@ -79,12 +80,14 @@
           }
         ];
         outputs = {
-          "Iiyama North America PL2530H 1154394602110" = {
-            position.x = 1920;
-            position.y = -1080;
+          "DP-1" = {
+            position.x = 0;
+            position.y = 0;
+            scale = 1.5;
             mode = {
-              width = 1920;
-              height = 1080;
+              width = 3840;
+              height = 2160;
+              refresh = 239.990;
             };
           };
           "Iiyama North America PL2530H 1154394602112" = {
