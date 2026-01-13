@@ -3,7 +3,7 @@
 {
   boot = {
     extraModprobeConfig = ''
-      options nvidia-drm modeset=1 nvidia-drm.fbdev=1"
+      options nvidia-drm modeset=1 nvidia-drm.fbdev=1
     '';
     initrd.kernelModules = [
       "nvidia"

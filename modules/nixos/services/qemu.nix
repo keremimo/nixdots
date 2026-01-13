@@ -1,4 +1,6 @@
 { pkgs, config, ... }:
+# Optional module for QEMU/KVM virtualization.
+# Not imported by default - add to host configuration when needed.
 {
   programs.virt-manager.enable = true;
 

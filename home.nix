@@ -7,7 +7,7 @@
   imports = [
     ./modules/home/core
     ./modules/home/desktop
-    ./modules/home/programs/shells.nix
-    ./modules/home/programs/dev-tools.nix
+    ./modules/home/programs
+    ./scripts/default.nix
   ];
 }
