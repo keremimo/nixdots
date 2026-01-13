@@ -79,7 +79,6 @@
           "on-click" = "blueman-manager";
         };
         "network" = {
-          "interface" = "wlp3s0";
           "format" = "{ifname}";
           "format-wifi" = "<span color='#b4befe'> </span>{essid}";
           "format-ethernet" = "{ipaddr}/{cidr} ";
