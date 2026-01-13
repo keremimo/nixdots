@@ -103,6 +103,15 @@
             ./modules/home/programs/spicetify.nix
           ];
         };
+
+        sci-go = mkHost {
+          modules = [
+            ./hosts/sci-go
+          ];
+          homeImports = [
+            stylix.homeModules.stylix
+          ];
+        };
       };
     };
 }
