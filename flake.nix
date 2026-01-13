@@ -43,6 +43,7 @@
       mkHomeModule = extraImports: {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "backup";
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.kerem.imports = baseHomeImports ++ extraImports;
       };
@@ -64,7 +65,6 @@
         };
     in
     {
-      home-manager.backupFileExtension = "backup";
       nixosConfigurations = {
         legion = mkHost {
           modules = [
