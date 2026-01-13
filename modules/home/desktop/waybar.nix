@@ -180,7 +180,7 @@
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         padding-right: 5px;
-        margin-right: 0
+        margin-right: 0;
       }
 
       #pulseaudio, #network {
