@@ -166,7 +166,7 @@
         color: #b4befe;
       }
 
-      #clock, #backlight, #pulseaudio, #bluetooth, #network, #battery, #cpu, #memory{
+      #clock, #backlight, #pulseaudio, #bluetooth, #network, #battery, #cpu, #memory, #tray, #custom-notification {
         border-radius: 10px;
         background-color: #11111b;
         color: #cdd6f4;
