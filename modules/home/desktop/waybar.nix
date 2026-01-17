@@ -183,7 +183,7 @@
         margin-right: 0;
       }
 
-      #pulseaudio, #network {
+      #network {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         padding-left: 5px;

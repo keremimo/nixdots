@@ -7,4 +7,8 @@
     localNetworkGameTransfers.openFirewall = true;
     gamescopeSession.enable = true;
   };
+  programs.alvr = {
+    enable = true;
+    openFirewall = true;
+  };
 }
