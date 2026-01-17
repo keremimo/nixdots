@@ -6,7 +6,7 @@ let
   '';
   wallpaper_random = pkgs.writeShellScriptBin "wallpaper_random" ''
     if command -v swww >/dev/null 2>&1; then
-      swww img $(find ~/Pictures/Wallpapers -type f | shuf -n1) --transition-type wipe
+      swww img "$(find ~/Pictures/Wallpapers -type f | shuf -n1)" --transition-type wipe
     fi
   '';
   default_wallpaper = pkgs.writeShellScriptBin "default_wallpaper" ''
