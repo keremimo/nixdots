@@ -169,11 +169,11 @@
 
   # Additional power-saving packages
   environment.systemPackages = with pkgs; [
-    powertop       # Power consumption monitoring
-    intel-gpu-tools # Intel GPU monitoring
-    nvtop          # NVIDIA GPU monitoring
-    lm_sensors     # Hardware monitoring (fan speeds, temps)
-    stress         # CPU stress testing for thermal testing
+    powertop            # Power consumption monitoring
+    intel-gpu-tools     # Intel GPU monitoring
+    nvtopPackages.full  # NVIDIA GPU monitoring
+    lm_sensors          # Hardware monitoring (fan speeds, temps)
+    stress              # CPU stress testing for thermal testing
   ];
 
   # Enable laptop-specific modules
@@ -186,19 +186,19 @@
   '';
 
   # Optimize systemd services
-  systemd.extraConfig = ''
-    DefaultTimeoutStopSec=10s
-  '';
+  systemd.settings.Manager = {
+    DefaultTimeoutStopSec = "10s";
+  };
 
   # Disable services that might wake the system
   services.logind = {
-    lidSwitch = "suspend";
-    lidSwitchExternalPower = "lock";
-    extraConfig = ''
-      HandlePowerKey=suspend
-      IdleAction=suspend
-      IdleActionSec=15min
-    '';
+    settings.Login = {
+      HandleLidSwitch = "suspend";
+      HandleLidSwitchExternalPower = "lock";
+      HandlePowerKey = "suspend";
+      IdleAction = "suspend";
+      IdleActionSec = "15min";
+    };
   };
 
   # Kernel patches and modules for better power management
