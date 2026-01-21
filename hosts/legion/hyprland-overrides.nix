@@ -16,7 +16,7 @@
 
     # Legion display override (adjust based on your model)
     monitor = lib.mkForce [
-      "eDP-1,preferred,auto,1.0"  # Built-in Legion display
+      "eDP-1,preferred,auto,1.33"  # Built-in Legion display
       ",preferred,auto,1"          # Auto-detect external monitors
     ];
 
@@ -37,13 +37,7 @@
 
     # NVIDIA-specific render settings
     render = {
-      explicit_sync = 1;
-      explicit_sync_kms = 1;
       direct_scanout = true;
-    };
-
-    cursor = {
-      no_hardware_cursors = true;  # NVIDIA cursor fix
     };
   };
 

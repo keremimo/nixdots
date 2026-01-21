@@ -1,4 +1,4 @@
-{ pkgs, config, libs, ... }:
+{ pkgs, config, ... }:
 
 {
   imports = [
@@ -7,7 +7,7 @@
 
   boot = {
     extraModprobeConfig = ''
-      options nvidia-drm modeset=1 nvidia-drm.fbdev=1
+      options nvidia-drm modeset=1 fbdev=1
       # NVIDIA power management for hybrid graphics
       options nvidia NVreg_DynamicPowerManagement=0x02
       options nvidia NVreg_EnableGpuFirmware=1
@@ -76,7 +76,7 @@
 
   # Hardware video acceleration
   environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHd";  # Use Intel iHD driver for better efficiency
+    LIBVA_DRIVER_NAME = "iHD";  # Use Intel iHD driver for better efficiency
   };
 
   nixpkgs.config = {

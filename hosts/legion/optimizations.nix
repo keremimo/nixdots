@@ -16,7 +16,7 @@
     "i915.fastboot=1"             # Faster boot with less power draw
 
     # Reduce CPU C-state latency for better battery
-    "intel_idle.max_cstate=5"
+    # "intel_idle.max_cstate=5"
 
     # Disable unnecessary features for battery life
     "nmi_watchdog=0"              # Reduces timer interrupts
@@ -27,44 +27,6 @@
     enable = true;
     cpuFreqGovernor = "powersave"; # Use powersave governor by default
     powertop.enable = true;        # Auto-tune power settings
-  };
-
-  # Thermald for Intel thermal management
-  services.thermald = {
-    enable = true;
-    configFile = pkgs.writeText "thermald.conf" ''
-      <?xml version="1.0"?>
-      <ThermalConfiguration>
-        <Platform>
-          <Name>Legion i9-14900HX</Name>
-          <ProductName>Legion</ProductName>
-          <Preference>QUIET</Preference>
-          <ThermalZones>
-            <ThermalZone>
-              <Type>cpu</Type>
-              <TripPoints>
-                <TripPoint>
-                  <SensorType>x86_pkg_temp</SensorType>
-                  <Temperature>75000</Temperature>
-                  <type>passive</type>
-                  <CoolingDevice>
-                    <index>1</index>
-                    <type>intel_powerclamp</type>
-                    <influence>100</influence>
-                    <SamplingPeriod>20</SamplingPeriod>
-                  </CoolingDevice>
-                </TripPoint>
-                <TripPoint>
-                  <SensorType>x86_pkg_temp</SensorType>
-                  <Temperature>85000</Temperature>
-                  <type>active</type>
-                </TripPoint>
-              </TripPoints>
-            </ThermalZone>
-          </ThermalZones>
-        </Platform>
-      </ThermalConfiguration>
-    '';
   };
 
   # Enhanced TLP configuration for Legion laptop
@@ -175,9 +137,6 @@
     lm_sensors          # Hardware monitoring (fan speeds, temps)
     stress              # CPU stress testing for thermal testing
   ];
-
-  # Enable laptop-specific modules
-  hardware.sensor.iio.enable = true;  # Screen rotation sensors (low power)
 
   # Reduce journal size to reduce disk writes
   services.journald.extraConfig = ''
