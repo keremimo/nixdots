@@ -78,7 +78,7 @@
             stylix.homeModules.stylix
             inputs.spicetify-nix.homeManagerModules.default
             ./modules/home/programs/spicetify.nix
-            ./hosts/legion/hyprland.nix
+            ./hosts/legion/hyprland-overrides.nix
           ];
         };
 
