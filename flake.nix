@@ -75,10 +75,10 @@
             ./hosts/legion/hardware.nix
           ];
           homeImports = [
-            niri.homeModules.niri
             stylix.homeModules.stylix
             inputs.spicetify-nix.homeManagerModules.default
             ./modules/home/programs/spicetify.nix
+            ./hosts/legion/hyprland.nix
           ];
         };
 
