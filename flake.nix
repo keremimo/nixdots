@@ -11,6 +11,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixarr.url = "github:rasmus-kirk/nixarr";
+    nixarr.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
     };
@@ -30,96 +32,87 @@
     , nixvim
     , niri
     , stylix
+    , nixarr
     , ...
     }@inputs:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
+
+      baseHomeImports = [
+        ./home.nix
+      ];
+
+      mkHomeModule = extraImports: {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "backup";
+        home-manager.extraSpecialArgs = { inherit inputs; };
+        home-manager.users.kerem.imports = baseHomeImports ++ extraImports;
+      };
+
+      mkHost =
+        { modules ? [ ]
+        , homeImports ? [ ]
+        }:
+        lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules =
+            [
+              ./configuration.nix
+              home-manager.nixosModules.home-manager
+              (mkHomeModule homeImports)
+            ]
+            ++ modules;
+        };
     in
     {
-      home-manager.backupFileExtension = "backup";
-      nixosConfigurations.legion = lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./configuration.nix
-          ./devices/legion/default.nix
-          ./devices/legion/hardware.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.kerem = {
-              imports = [
-                ./home.nix
-                niri.homeModules.niri
-                stylix.homeModules.stylix
-                inputs.spicetify-nix.homeManagerModules.default
-                ./modules/spicetify.nix
-              ];
-            };
-          }
-          {
-            environment.systemPackages = [
-            ];
-          }
-        ];
-      };
-      nixosConfigurations.desktop = lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./configuration.nix
-          ./devices/desktop/default.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.kerem = {
-              imports = [
-                ./home.nix
-                stylix.homeModules.stylix
-                niri.homeModules.niri
-                niri.homeModules.stylix
-                ./modules/niri.nix
-                inputs.spicetify-nix.homeManagerModules.default
-                ./modules/spicetify.nix
-              ];
-            };
-          }
-          {
-            environment.systemPackages = [
-            ];
-          }
-        ];
-      };
-      nixosConfigurations.L14 = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./configuration.nix
-          ./devices/L14
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.kerem = {
-              imports = [
-                ./home.nix
-                stylix.homeModules.stylix
-                inputs.spicetify-nix.homeManagerModules.default
-                ./modules/spicetify.nix
-              ];
-            };
-          }
-          {
-            environment.systemPackages = [
-            ];
-          }
-        ];
+      nixosConfigurations = {
+        legion = mkHost {
+          modules = [
+            ./hosts/legion/default.nix
+            ./hosts/legion/hardware.nix
+          ];
+          homeImports = [
+            stylix.homeModules.stylix
+            inputs.spicetify-nix.homeManagerModules.default
+            ./modules/home/programs/spicetify.nix
+            ./hosts/legion/hyprland-overrides.nix
+          ];
+        };
+
+        desktop = mkHost {
+          modules = [
+            ./hosts/desktop/default.nix
+            nixarr.nixosModules.default
+          ];
+          homeImports = [
+            stylix.homeModules.stylix
+            inputs.spicetify-nix.homeManagerModules.default
+            ./modules/home/programs/spicetify.nix
+          ];
+        };
+
+        L14 = mkHost {
+          modules = [
+            ./hosts/L14
+          ];
+          homeImports = [
+            stylix.homeModules.stylix
+            inputs.spicetify-nix.homeManagerModules.default
+            ./modules/home/programs/spicetify.nix
+          ];
+        };
+
+        sci-go = mkHost {
+          modules = [
+            ./hosts/sci-go
+          ];
+          homeImports = [
+            stylix.homeModules.stylix
+          ];
+        };
       };
     };
 }

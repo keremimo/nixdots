@@ -1,0 +1,47 @@
+{ inputs, pkgs, ... }:
+{
+  environment.systemPackages = with pkgs; [
+    vulkan-tools
+    vulkan-loader
+    vulkan-validation-layers
+    swww
+    gh
+    obsidian
+    vscode
+    claude-code
+    lact
+    qmk
+    google-chrome
+    blueman
+    neovim
+    xwayland-satellite
+    xwayland-run
+    ghostty
+    wl-clipboard
+    gnumake
+    git
+    wget
+    curl
+    hyprpaper
+    hyprnotify
+    hyprcursor
+    fuzzel
+    kitty
+    grim
+    slurp
+    waybar
+    hyprlock
+    pavucontrol
+    networkmanagerapplet
+    glibc
+    glib
+    zlib
+    libclang
+    openssl
+    pkg-config
+    gcc
+    sqlite
+    xfce.thunar
+    gnome-tweaks
+  ];
+}
