@@ -11,28 +11,18 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixarr.url = "github:rasmus-kirk/nixarr";
-    nixarr.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
     };
-    nixvim.url = "github:Keremimo/nixvim";
     niri = {
       url = "github:sodiboo/niri-flake";
-    };
-    stylix.url = "github:danth/stylix/release-25.11";
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
     };
   };
 
   outputs =
     { nixpkgs
     , home-manager
-    , nixvim
     , niri
-    , stylix
-    , nixarr
     , ...
     }@inputs:
     let
@@ -75,9 +65,6 @@
             ./hosts/legion/hardware.nix
           ];
           homeImports = [
-            stylix.homeModules.stylix
-            inputs.spicetify-nix.homeManagerModules.default
-            ./modules/home/programs/spicetify.nix
             ./hosts/legion/hyprland-overrides.nix
           ];
         };
@@ -85,12 +72,8 @@
         desktop = mkHost {
           modules = [
             ./hosts/desktop/default.nix
-            nixarr.nixosModules.default
           ];
           homeImports = [
-            stylix.homeModules.stylix
-            inputs.spicetify-nix.homeManagerModules.default
-            ./modules/home/programs/spicetify.nix
           ];
         };
 
@@ -99,9 +82,6 @@
             ./hosts/L14
           ];
           homeImports = [
-            stylix.homeModules.stylix
-            inputs.spicetify-nix.homeManagerModules.default
-            ./modules/home/programs/spicetify.nix
           ];
         };
 
@@ -110,7 +90,6 @@
             ./hosts/sci-go
           ];
           homeImports = [
-            stylix.homeModules.stylix
           ];
         };
       };

@@ -5,7 +5,6 @@
     ./flatpak.nix
     ./keyring.nix
     ./logind.nix
-    ./monado.nix
     ./networking.nix
     ./passkeys.nix
     ./power.nix
