@@ -1,0 +1,18 @@
+{...}:
+{
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
+  '';
+
+  services.tailscale = {
+    enable = true;
+    # Enable tailscale at startup
+
+    # If you would like to use a preauthorized key
+    #authKeyFile = "/run/secrets/tailscale_key";
+
+  };
+}
