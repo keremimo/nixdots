@@ -13,5 +13,6 @@
     ./gpu.nix
     ./tailscale.nix
     ./ssh.nix
+    ./mosh.nix
   ];
 }
