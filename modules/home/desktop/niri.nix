@@ -90,43 +90,39 @@
             };
           };
         };
-        binds = with config.lib.niri.actions;
-          let
-            shoot = spawn "sh" "-c";
-          in
-          {
+        binds = {
             "XF86AudioRaiseVolume".action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+" ];
             "XF86AudioLowerVolume".action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-" ];
 
             "Super+Space".action.spawn = "fuzzel";
             "Super+T".action.spawn = "kitty";
             "Super+B".action.spawn = "firefox";
-            "Super+1".action = focus-workspace 1;
-            "Super+2".action = focus-workspace 2;
-            "Super+3".action = focus-workspace 3;
-            "Super+4".action = focus-workspace 4;
+            "Super+1".action.focus-workspace = 1;
+            "Super+2".action.focus-workspace = 2;
+            "Super+3".action.focus-workspace = 3;
+            "Super+4".action.focus-workspace = 4;
 
-            "Super+q".action = close-window;
+            "Super+q".action.close-window = true;
             "Super+Shift+q".action.quit.skip-confirmation = true;
-            "Super+Equal".action = set-column-width "+5%";
-            "Super+Minus".action = set-column-width "-5%";
+            "Super+Equal".action.set-column-width = "+5%";
+            "Super+Minus".action.set-column-width = "-5%";
 
-            "Super+f".action = fullscreen-window;
-            "Super+Left".action = focus-column-or-monitor-left;
-            "Super+Right".action = focus-column-or-monitor-right;
-            "Super+Shift+Left".action = move-column-left;
-            "Super+Shift+Right".action = move-column-right;
+            "Super+f".action.fullscreen-window = true;
+            "Super+Left".action.focus-column-or-monitor-left = true;
+            "Super+Right".action.focus-column-or-monitor-right = true;
+            "Super+Shift+Left".action.move-column-left = true;
+            "Super+Shift+Right".action.move-column-right = true;
 
-            "Super+C".action = center-column;
-            "Super+W".action = consume-window-into-column;
-            "Super+E".action = expel-window-from-column;
+            "Super+C".action.center-column = true;
+            "Super+W".action.consume-window-into-column = true;
+            "Super+E".action.expel-window-from-column = true;
 
-            "Super+H".action = focus-column-left;
-            "Super+L".action = focus-column-right;
-            "Super+J".action = focus-workspace-down;
-            "Super+K".action = focus-workspace-up;
-            "Print".action = shoot ''grim -g "$(slurp)" - | wl-copy'';
-            "Ctrl+Print". action = shoot ''grim -g "$(slurp)" - | magick png:- -colorspace Gray -depth 8 -resample 400x400 tif:- | tesseract --oem 2 --psm 6 -l eng - - | wl-copy'';
+            "Super+H".action.focus-column-left = true;
+            "Super+L".action.focus-column-right = true;
+            "Super+J".action.focus-workspace-down = true;
+            "Super+K".action.focus-workspace-up = true;
+            # "Print".action = shoot ''grim -g "$(slurp)" - | wl-copy'';
+            # "Ctrl+Print". action = shoot ''grim -g "$(slurp)" - | magick png:- -colorspace Gray -depth 8 -resample 400x400 tif:- | tesseract --oem 2 --psm 6 -l eng - - | wl-copy'';
             "XF86MonBrightnessUp".action.spawn = [ "brightnessctl" "set" "+5%" ];
             "XF86MonBrightnessDown".action.spawn = [ "brightnessctl" "set" "5%-" ];
           };
