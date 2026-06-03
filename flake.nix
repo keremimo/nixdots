@@ -13,11 +13,16 @@
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
     };
+    nixvim = {
+      url = "github:keremimo/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     { nixpkgs
     , home-manager
+    , nixvim
     , ...
     }:
     let
@@ -26,6 +31,7 @@
 
       baseHomeImports = [
         ./home.nix
+        nixvim.homeModules.default
       ];
 
       mkHomeModule = extraImports: {
@@ -62,14 +68,14 @@
           ];
         };
 
-        desktop-hyprland = mkHost {
+        legion = mkHost {
           modules = [
-            ./hosts/desktop/default.nix
+            ./hosts/legion
             ./modules/nixos/desktop/hyprland.nix
-            ./modules/nixos/programs/session-switch.nix
           ];
           homeImports = [
             ./modules/home/desktop/hyprland.nix
+            ./hosts/legion/hyprland-overrides.nix
           ];
         };
 
@@ -83,15 +89,6 @@
           ];
         };
 
-        L14-hyprland = mkHost {
-          modules = [
-            ./hosts/L14
-            ./modules/nixos/desktop/hyprland.nix
-          ];
-          homeImports = [
-            ./modules/home/desktop/hyprland.nix
-          ];
-        };
       };
     };
 }

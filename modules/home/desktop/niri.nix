@@ -1,15 +1,34 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
-  home.packages = [
-    pkgs.dms-shell
-  ];
+  home.activation.dmsSetup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    export XDG_CONFIG_HOME="''${XDG_CONFIG_HOME:-$HOME/.config}"
+    $DRY_RUN_CMD ${pkgs.dms-shell}/bin/dms setup colors
+    $DRY_RUN_CMD ${pkgs.dms-shell}/bin/dms setup layout
+    $DRY_RUN_CMD ${pkgs.dms-shell}/bin/dms setup alttab
+    $DRY_RUN_CMD ${pkgs.dms-shell}/bin/dms setup binds
+    $DRY_RUN_CMD ${pkgs.dms-shell}/bin/dms setup outputs
+    $DRY_RUN_CMD ${pkgs.dms-shell}/bin/dms setup cursor
+    $DRY_RUN_CMD ${pkgs.dms-shell}/bin/dms setup windowrules
+  '';
 
   xdg.configFile."niri/config.kdl".text = ''
-    spawn-at-startup "${pkgs.dms-shell}/bin/dms" "run"
     spawn-at-startup "awww-daemon"
     spawn-at-startup "sh" "-c" "awww img ~/dotfiles/Wallpapers/wallhaven-6dygpl.jpg"
 
     prefer-no-csd
+
+    include "dms/colors.kdl"
+    include "dms/layout.kdl"
+    include "dms/alttab.kdl"
+    include "dms/binds.kdl"
+
+    environment {
+        XDG_CURRENT_DESKTOP "niri"
+        QT_QPA_PLATFORM "wayland"
+        ELECTRON_OZONE_PLATFORM_HINT "auto"
+        QT_QPA_PLATFORMTHEME "gtk3"
+        QT_QPA_PLATFORMTHEME_QT6 "gtk3"
+    }
 
     input {
         focus-follows-mouse
@@ -34,9 +53,20 @@
 
     layout {
         gaps 4
+        background-color "transparent"
         border { off; }
         focus-ring { off; }
         always-center-single-column
+    }
+
+    layer-rule {
+        match namespace="^quickshell$"
+        place-within-backdrop true
+    }
+
+    layer-rule {
+        match namespace="dms:blurwallpaper"
+        place-within-backdrop true
     }
 
     window-rule {

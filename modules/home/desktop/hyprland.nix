@@ -22,10 +22,6 @@ let
   };
 in
 {
-  home.packages = [
-    pkgs.dms-shell
-  ];
-
   # XDG Desktop Portal configuration for Hyprland
   xdg.configFile."xdg-desktop-portal/portals.conf".text = ''
     [preferred]
@@ -278,7 +274,6 @@ in
           "hyprland.start"
           (lua ''
             function()
-              hl.exec_cmd("dms run")
               hl.exec_cmd("awww-daemon")
               hl.exec_cmd("hyprctl setcursor Banana 24")
               hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-theme 'Banana'")
