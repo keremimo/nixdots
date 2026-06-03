@@ -5,7 +5,7 @@
   ];
 
   xdg.configFile."niri/config.kdl".text = ''
-    spawn-at-startup "dms"
+    spawn-at-startup "${pkgs.dms-shell}/bin/dms"
     spawn-at-startup "awww-daemon"
     spawn-at-startup "sh" "-c" "awww img ~/dotfiles/Wallpapers/wallhaven-6dygpl.jpg"
 
