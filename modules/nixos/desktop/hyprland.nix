@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 {
+  imports = [
+    ./dms.nix
+  ];
+
   programs.xwayland.enable = true;
   programs.hyprland.enable = true;
 
