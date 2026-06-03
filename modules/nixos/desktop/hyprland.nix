@@ -1,7 +1,6 @@
-{ pkgs, config, ... }:
+{ config, pkgs, ... }:
 {
   programs.xwayland.enable = true;
-
   programs.hyprland.enable = true;
 
   xdg.portal = {
@@ -17,7 +16,6 @@
     };
   };
 
-  # Fix portal discovery for Hyprland
   systemd.user.services.xdg-desktop-portal.serviceConfig = {
     Environment = "NIX_XDG_DESKTOP_PORTAL_DIR=${config.system.path}/share/xdg-desktop-portal/portals";
   };

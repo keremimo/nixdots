@@ -1,131 +1,102 @@
-{ config
-, pkgs
-, lib
-, ...
-}: {
-  programs.niri = {
-    enable = true;
-    package = pkgs.niri;
-    settings =
-      let
-        sh = cmd: [ "sh" "-c" (lib.escape [ "\"" ] cmd) ];
-      in
-      {
-        spawn-at-startup = [
-          {
-            command = sh "waybar";
-          }
-          {
-            command = sh "swaync";
-          }
-          {
-            command = sh "swww-daemon";
-          }
-          {
-            command = sh "swww img ~/dotfiles/Wallpapers/wallhaven-6dygpl.jpg";
-          }
-        ];
-        prefer-no-csd = true;
-        input = {
-          focus-follows-mouse.enable = true;
-          keyboard.repeat-delay = 220;
-          keyboard.repeat-rate = 40;
-          mouse = {
-            accel-profile = "flat";
-            scroll-button = 274;
-            scroll-factor = 0.8;
-            scroll-method = "on-button-down";
-          };
-          touchpad = {
-            accel-profile = "flat";
-            scroll-factor = 0.5;
-          };
-        };
-        layout = {
-          gaps = 4;
-          border.enable = false;
-          focus-ring.enable = false;
-          always-center-single-column = true;
-        };
-        window-rules = [
-          {
-            matches = [
-              { app-id = "^.*$"; }
-            ];
-            draw-border-with-background = false;
-            geometry-corner-radius = {
-              bottom-left = 12.0;
-              bottom-right = 12.0;
-              top-left = 12.0;
-              top-right = 12.0;
-            };
-            clip-to-geometry = true;
-          }
-        ];
-        outputs = {
-          "DP-1" = {
-            position.x = 0;
-            position.y = 0;
-            scale = 1.5;
-            mode = {
-              width = 3840;
-              height = 2160;
-              refresh = 239.990;
-            };
-          };
-          "Iiyama North America PL2530H 1154394602112" = {
-            position.x = -1920;
-            position.y = -1080;
-            mode = {
-              width = 1920;
-              height = 1080;
-            };
-          };
-          "PNP(AOC) 27G2WG3- 1TMP9HA011448" = {
-            position.x = 0;
-            position.y = -1080;
-            mode = {
-              width = 1920;
-              height = 1080;
-            };
-          };
-        };
-        binds = {
-            "XF86AudioRaiseVolume".action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+" ];
-            "XF86AudioLowerVolume".action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-" ];
+{ pkgs, ... }:
+{
+  home.packages = [
+    pkgs.dms-shell
+  ];
 
-            "Super+Space".action.spawn = "fuzzel";
-            "Super+T".action.spawn = "kitty";
-            "Super+B".action.spawn = "firefox";
-            "Super+1".action.focus-workspace = 1;
-            "Super+2".action.focus-workspace = 2;
-            "Super+3".action.focus-workspace = 3;
-            "Super+4".action.focus-workspace = 4;
+  xdg.configFile."niri/config.kdl".text = ''
+    spawn-at-startup "dms"
+    spawn-at-startup "awww-daemon"
+    spawn-at-startup "sh" "-c" "awww img ~/dotfiles/Wallpapers/wallhaven-6dygpl.jpg"
 
-            "Super+q".action.close-window = true;
-            "Super+Shift+q".action.quit.skip-confirmation = true;
-            "Super+Equal".action.set-column-width = "+5%";
-            "Super+Minus".action.set-column-width = "-5%";
+    prefer-no-csd
 
-            "Super+f".action.fullscreen-window = true;
-            "Super+Left".action.focus-column-or-monitor-left = true;
-            "Super+Right".action.focus-column-or-monitor-right = true;
-            "Super+Shift+Left".action.move-column-left = true;
-            "Super+Shift+Right".action.move-column-right = true;
+    input {
+        focus-follows-mouse
 
-            "Super+C".action.center-column = true;
-            "Super+W".action.consume-window-into-column = true;
-            "Super+E".action.expel-window-from-column = true;
+        keyboard {
+            repeat-delay 220
+            repeat-rate 40
+        }
 
-            "Super+H".action.focus-column-left = true;
-            "Super+L".action.focus-column-right = true;
-            "Super+J".action.focus-workspace-down = true;
-            "Super+K".action.focus-workspace-up = true;
-            # "Print".action = shoot ''grim -g "$(slurp)" - | wl-copy'';
-            # "Ctrl+Print". action = shoot ''grim -g "$(slurp)" - | magick png:- -colorspace Gray -depth 8 -resample 400x400 tif:- | tesseract --oem 2 --psm 6 -l eng - - | wl-copy'';
-            "XF86MonBrightnessUp".action.spawn = [ "brightnessctl" "set" "+5%" ];
-            "XF86MonBrightnessDown".action.spawn = [ "brightnessctl" "set" "5%-" ];
-          };
-      };
-  };
+        mouse {
+            accel-profile "flat"
+            scroll-button 274
+            scroll-factor 0.8
+            scroll-method "on-button-down"
+        }
+
+        touchpad {
+            accel-profile "flat"
+            scroll-factor 0.5
+        }
+    }
+
+    layout {
+        gaps 4
+        border { off; }
+        focus-ring { off; }
+        always-center-single-column
+    }
+
+    window-rule {
+        match app-id="^.*$"
+        draw-border-with-background false
+        geometry-corner-radius 12.0
+        clip-to-geometry true
+    }
+
+    output "DP-1" {
+        position x=0 y=0
+        scale 1.5
+        mode "3840x2160@239.990"
+    }
+
+    output "Iiyama North America PL2530H 1154394602112" {
+        position x=-1920 y=-1080
+        mode "1920x1080"
+    }
+
+    output "PNP(AOC) 27G2WG3- 1TMP9HA011448" {
+        position x=0 y=-1080
+        mode "1920x1080"
+    }
+
+    binds {
+        XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
+        XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+
+        Mod+Space { spawn "fuzzel"; }
+        Mod+T { spawn "kitty"; }
+        Mod+B { spawn "firefox"; }
+
+        Mod+1 { focus-workspace 1; }
+        Mod+2 { focus-workspace 2; }
+        Mod+3 { focus-workspace 3; }
+        Mod+4 { focus-workspace 4; }
+
+        Mod+Q { close-window; }
+        Mod+Shift+Q { quit skip-confirmation=true; }
+        Mod+Equal { set-column-width "+5%"; }
+        Mod+Minus { set-column-width "-5%"; }
+
+        Mod+F { fullscreen-window; }
+        Mod+Left { focus-column-or-monitor-left; }
+        Mod+Right { focus-column-or-monitor-right; }
+        Mod+Shift+Left { move-column-left; }
+        Mod+Shift+Right { move-column-right; }
+
+        Mod+C { center-column; }
+        Mod+W { consume-window-into-column; }
+        Mod+E { expel-window-from-column; }
+
+        Mod+H { focus-column-left; }
+        Mod+L { focus-column-right; }
+        Mod+J { focus-workspace-down; }
+        Mod+K { focus-workspace-up; }
+
+        XF86MonBrightnessUp { spawn "brightnessctl" "set" "+5%"; }
+        XF86MonBrightnessDown { spawn "brightnessctl" "set" "5%-"; }
+    }
+  '';
 }

@@ -1,10 +1,10 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     vulkan-tools
     vulkan-loader
     vulkan-validation-layers
-    swww
+    awww
     gh
     obsidian
     vscode
@@ -22,15 +22,10 @@
     git
     wget
     curl
-    hyprpaper
-    hyprnotify
-    hyprcursor
     fuzzel
     kitty
     grim
     slurp
-    waybar
-    hyprlock
     pavucontrol
     networkmanagerapplet
     glibc
@@ -41,7 +36,7 @@
     pkg-config
     gcc
     sqlite
-    xfce.thunar
+    thunar
     gnome-tweaks
   ];
 }

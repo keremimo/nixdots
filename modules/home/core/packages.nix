@@ -8,7 +8,6 @@
     stow
     lolcat
     mako
-    swaynotificationcenter
 
     zip
     xz
