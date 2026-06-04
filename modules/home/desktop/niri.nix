@@ -1,98 +1,91 @@
-{ lib, pkgs, ... }:
+{ config, lib, ... }:
+let
+  cfg = config.kerem.niri;
+in
 {
-  home.activation.dmsSetup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    export XDG_CONFIG_HOME="''${XDG_CONFIG_HOME:-$HOME/.config}"
-    $DRY_RUN_CMD ${pkgs.dms-shell}/bin/dms setup colors
-    $DRY_RUN_CMD ${pkgs.dms-shell}/bin/dms setup layout
-    $DRY_RUN_CMD ${pkgs.dms-shell}/bin/dms setup alttab
-    $DRY_RUN_CMD ${pkgs.dms-shell}/bin/dms setup binds
-    $DRY_RUN_CMD ${pkgs.dms-shell}/bin/dms setup outputs
-    $DRY_RUN_CMD ${pkgs.dms-shell}/bin/dms setup cursor
-    $DRY_RUN_CMD ${pkgs.dms-shell}/bin/dms setup windowrules
-  '';
+  options.kerem.niri.extraConfig = lib.mkOption {
+    type = lib.types.lines;
+    default = "";
+    description = "Extra KDL appended to the generated niri configuration.";
+  };
 
-  xdg.configFile."niri/config.kdl".text = ''
-    spawn-at-startup "awww-daemon"
-    spawn-at-startup "sh" "-c" "awww img ~/dotfiles/Wallpapers/wallhaven-6dygpl.jpg"
+  config = {
+    home.activation.ensureDmsNiriIncludes = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      export XDG_CONFIG_HOME="''${XDG_CONFIG_HOME:-$HOME/.config}"
+      $DRY_RUN_CMD mkdir -p "$XDG_CONFIG_HOME/niri/dms"
+      for file in colors layout alttab binds; do
+        if [ ! -e "$XDG_CONFIG_HOME/niri/dms/$file.kdl" ]; then
+          $DRY_RUN_CMD touch "$XDG_CONFIG_HOME/niri/dms/$file.kdl"
+        fi
+      done
+    '';
 
-    prefer-no-csd
+    xdg.configFile."niri/config.kdl".text = ''
+      spawn-at-startup "awww-daemon"
+      spawn-at-startup "sh" "-c" "awww img ~/dotfiles/Wallpapers/wallhaven-6dygpl.jpg"
 
-    include "dms/colors.kdl"
-    include "dms/layout.kdl"
-    include "dms/alttab.kdl"
-    include "dms/binds.kdl"
+      prefer-no-csd
 
-    environment {
+      include "dms/colors.kdl"
+      include "dms/layout.kdl"
+      include "dms/alttab.kdl"
+      include "dms/binds.kdl"
+
+      environment {
         XDG_CURRENT_DESKTOP "niri"
         QT_QPA_PLATFORM "wayland"
         ELECTRON_OZONE_PLATFORM_HINT "auto"
         QT_QPA_PLATFORMTHEME "gtk3"
         QT_QPA_PLATFORMTHEME_QT6 "gtk3"
-    }
+      }
 
-    input {
+      input {
         focus-follows-mouse
 
         keyboard {
-            repeat-delay 220
-            repeat-rate 40
+          repeat-delay 220
+          repeat-rate 40
         }
 
         mouse {
-            accel-profile "flat"
-            scroll-button 274
-            scroll-factor 0.8
-            scroll-method "on-button-down"
+          accel-profile "flat"
+          scroll-button 274
+          scroll-factor 0.8
+          scroll-method "on-button-down"
         }
 
         touchpad {
-            accel-profile "flat"
-            scroll-factor 0.5
+          accel-profile "flat"
+          scroll-factor 0.5
         }
-    }
+      }
 
-    layout {
+      layout {
         gaps 4
         background-color "transparent"
         border { off; }
         focus-ring { off; }
         always-center-single-column
-    }
+      }
 
-    layer-rule {
+      layer-rule {
         match namespace="^quickshell$"
         place-within-backdrop true
-    }
+      }
 
-    layer-rule {
+      layer-rule {
         match namespace="dms:blurwallpaper"
         place-within-backdrop true
-    }
+      }
 
-    window-rule {
+      window-rule {
         match app-id="^.*$"
         draw-border-with-background false
         geometry-corner-radius 12.0
         clip-to-geometry true
-    }
+      }
 
-    output "DP-1" {
-        position x=0 y=0
-        scale 1.5
-        mode "3840x2160@239.990"
-    }
-
-    output "Iiyama North America PL2530H 1154394602112" {
-        position x=-1920 y=-1080
-        mode "1920x1080"
-    }
-
-    output "PNP(AOC) 27G2WG3- 1TMP9HA011448" {
-        position x=0 y=-1080
-        mode "1920x1080"
-    }
-
-    binds {
+      binds {
         XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
         XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
 
@@ -127,6 +120,9 @@
 
         XF86MonBrightnessUp { spawn "brightnessctl" "set" "+5%"; }
         XF86MonBrightnessDown { spawn "brightnessctl" "set" "5%-"; }
-    }
-  '';
+      }
+
+      ${cfg.extraConfig}
+    '';
+  };
 }

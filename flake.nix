@@ -65,10 +65,21 @@
           ];
           homeImports = [
             ./modules/home/desktop/niri.nix
+            ./hosts/desktop/niri-outputs.nix
           ];
         };
 
         legion = mkHost {
+          modules = [
+            ./hosts/legion
+            ./modules/nixos/desktop/niri.nix
+          ];
+          homeImports = [
+            ./modules/home/desktop/niri.nix
+          ];
+        };
+
+        legion-hyprland = mkHost {
           modules = [
             ./hosts/legion
             ./modules/nixos/desktop/hyprland.nix
